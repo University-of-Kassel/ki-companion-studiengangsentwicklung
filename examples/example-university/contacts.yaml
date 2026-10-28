@@ -1,0 +1,21 @@
+contacts:
+  version: "1.0"
+  institution: "example-university"
+  demo_only: true
+
+  routing:
+    programme_planning:
+      unit: "Programme Development Office"
+      url: "https://example.invalid/programmes"
+      email: "programmes@example.invalid"
+
+    accreditation:
+      unit: "Quality Assurance Office"
+      url: "https://example.invalid/quality"
+      email: "quality@example.invalid"
+
+  named_contacts: []
+
+  note: >
+    Sämtliche Adressen verwenden die reservierte Domain example.invalid und
+    sind nicht real.

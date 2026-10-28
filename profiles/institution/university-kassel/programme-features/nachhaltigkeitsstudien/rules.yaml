@@ -1,0 +1,227 @@
+rules:
+  version: '1.0'
+  profile: university-kassel-nachhaltigkeitsstudien
+  source: ab_nas_2024
+  audited_against:
+    title: Allgemeine Bestimmungen für das Bachelor-Nebenfach Nachhaltigkeitsstudien und die Integrierten Nachhaltigkeitsstudien
+      der Universität Kassel
+    date: '2024-12-11'
+    publication: Mitteilungsblatt Nr. 4/2025 vom 28.03.2025
+  general_rules:
+  - id: uk_nas_supplements_ab_bama
+    trigger: programme_structure
+    rule: Die AB NaS ergänzt die AB Bachelor/Master in deren jeweils geltender Fassung.
+    citation: § 1 AB NaS, S. 118
+    status: binding
+    relation: supplements_parent_profile
+  - id: uk_nas_focus_size
+    trigger: programme_structure
+    semantic_key: sustainability_focus_credits
+    parameter: focus_credits
+    value: 18
+    rule: Nachhaltigkeitsstudien-Schwerpunkte haben einen Gesamtumfang von 18 Credits und sind im vorgesehenen Verbund
+      zu wählen.
+    citation: § 5 Abs. 1 AB NaS, S. 119–122
+    status: binding
+  - id: uk_nas_focus_selection_specials
+    trigger: programme_structure
+    rule: Bei Modulen mit a/b-Kennzeichnung ist zwischen a und b zu wählen; in den Schwerpunkten 6 und 19 sind drei
+      Module zu je 6 Credits, im Schwerpunkt 29 zwei Module zu je 9 Credits zu wählen.
+    citation: § 5 Abs. 1 AB NaS, S. 122
+    status: binding
+  - id: uk_nas_project_pool
+    trigger: programme_structure
+    rule: Das Modul „Projekt Nachhaltigkeitsstudien“ wird aus einem einheitlichen Pool angeboten und weist Varianten
+      im Umfang von 10 bzw. 12 Credits auf.
+    citation: § 5 Abs. 2 AB NaS, S. 123
+    status: binding
+  mode_rules:
+    minor:
+    - id: uk_nas_minor_total
+      trigger: programme_structure
+      parameter: feature_total_credits
+      value: 40
+      citation: § 7 Abs. 1 AB NaS, S. 123
+      status: binding
+    - id: uk_nas_minor_components
+      trigger: programme_structure
+      required_components:
+      - component: sustainability_focus
+        count: 1
+        credits_each: 18
+      - component: Grundlagen und Theorien der Nachhaltigkeit
+        credits: 6
+      - component: Erkenntnistheorie und Methoden der Nachhaltigkeit
+        credits: 6
+      - component: Projekt Nachhaltigkeitsstudien
+        credits: 10
+      citation: § 7 Abs. 1 AB NaS, S. 123
+      status: binding
+    - id: uk_nas_minor_english_b1
+      trigger: language_admission
+      rule: Für die Zulassung zum Bachelor-Nebenfach Nachhaltigkeitsstudien ist Englisch auf B1-Niveau des GER nachzuweisen.
+      citation: § 6 Abs. 1 AB NaS, S. 123
+      status: binding
+    - id: uk_nas_minor_no_double_credit
+      trigger: recognition
+      rule: Module, Prüfungsleistungen und Studienleistungen des Hauptfachcurriculums dürfen im Nebenfach Nachhaltigkeitsstudien
+        nicht erneut creditiert werden.
+      citation: § 7 Abs. 2 AB NaS, S. 123
+      status: binding
+    inas_a:
+    - id: uk_nas_inas_a_total
+      trigger: programme_structure
+      parameter: feature_total_credits
+      value: 60
+      citation: § 8 Abs. 1 AB NaS, S. 123
+      status: binding
+    - id: uk_nas_inas_a_components
+      trigger: programme_structure
+      required_components:
+      - component: sustainability_focus
+        count: 2
+        credits_each: 18
+      - component: Grundlagen und Theorien der Nachhaltigkeit
+        credits: 6
+      - component: Erkenntnistheorie und Methoden der Nachhaltigkeit
+        credits: 6
+      - component: Projekt Nachhaltigkeitsstudien
+        credits: 12
+      citation: § 8 Abs. 1 AB NaS, S. 123
+      status: binding
+    - id: uk_nas_inas_a_no_double_credit
+      trigger: recognition
+      rule: Im Curriculum bereits enthaltene Module, Prüfungsleistungen und Studienleistungen dürfen in InAS A nicht
+        erneut creditiert werden.
+      citation: § 8 Abs. 3 AB NaS, S. 123
+      status: binding
+    inas_b:
+    - id: uk_nas_inas_b_total
+      trigger: programme_structure
+      parameter: feature_total_credits
+      value: 30
+      citation: § 8 Abs. 2 AB NaS, S. 123
+      status: binding
+    - id: uk_nas_inas_b_components
+      trigger: programme_structure
+      required_components:
+      - component: sustainability_focus
+        count: 1
+        credits_each: 18
+      - component: Grundlagen und Theorien der Nachhaltigkeit
+        credits: 6
+      - component: Erkenntnistheorie und Methoden der Nachhaltigkeit
+        credits: 6
+      citation: § 8 Abs. 2 AB NaS, S. 123
+      status: binding
+    - id: uk_nas_inas_b_no_double_credit
+      trigger: recognition
+      rule: Im Curriculum bereits enthaltene Module, Prüfungsleistungen und Studienleistungen dürfen in InAS B nicht
+        erneut creditiert werden.
+      citation: § 8 Abs. 3 AB NaS, S. 123
+      status: binding
+    elective_focus:
+    - id: uk_nas_elective_focus_total
+      trigger: programme_structure
+      parameter: feature_total_credits
+      value: 18
+      rule: Im Wahlbereich kann ein nach § 5 Abs. 1 AB NaS wählbarer Schwerpunkt im Umfang von 18 Credits vorgesehen
+        werden.
+      citation: § 2 Abs. 3 i. V. m. § 5 Abs. 1 AB NaS, S. 118–122
+      status: binding_when_adopted
+      activation_requirement: Ausdrückliche Aufnahme dieser Möglichkeit in die Fachprüfungsordnung.
+  governance_rules:
+  - id: uk_nas_minor_governance
+    applies_if:
+      integration_mode: minor
+    trigger: documentation_completeness
+    rule: Für das Nebenfach gelten die in § 4 Abs. 1 AB NaS bestimmten Import-/Exportzuständigkeiten; für Projekt
+      und Basismodule ist der Prüfungsausschuss des hochschulweiten Bachelorstudiengangs zur Nachhaltigkeit zuständig.
+    citation: § 4 Abs. 1 AB NaS, S. 118
+    status: binding
+  - id: uk_nas_integrated_governance
+    applies_if:
+      integration_mode:
+      - inas_a
+      - inas_b
+    trigger: documentation_completeness
+    rule: Bei InAS trifft der Prüfungsausschuss des integrierenden Studiengangs die Entscheidungen des importierenden
+      Studiengangs; für Nachhaltigkeitsschwerpunkte gelten Exportzuständigkeiten, für Projekt und Basismodule übernimmt
+      der Prüfungsausschuss des hochschulweiten Bachelorstudiengangs zur Nachhaltigkeit die Exportaufgaben.
+    citation: § 4 Abs. 2 AB NaS, S. 118–119
+    status: binding
+  - id: uk_nas_elective_focus_governance_not_specified_here
+    applies_if:
+      integration_mode: elective_focus
+    trigger: documentation_completeness
+    status: not_assumed
+    rule: Für die Wahlbereichsvariante nach § 2 Abs. 3 wird aus § 4 AB NaS keine eigenständige besondere Zuständigkeitsregel
+      abgeleitet; maßgeblich sind die einschlägige Fachprüfungsordnung und die übergeordneten AB BAMA-Regeln.
+  examination_rules:
+  - id: uk_nas_exam_temporal_relation
+    trigger: assessment_alignment
+    rule: Studienbegleitende Modulprüfungen sind im zeitlichen und sachlichen Zusammenhang mit einem Modul zu absolvieren.
+    citation: § 9 Abs. 1 AB NaS, S. 123
+    status: binding
+  - id: uk_nas_exam_form_selection
+    trigger: assessment_alignment
+    rule: Art der Prüfungs- und Studienleistung wird zu Beginn der Lehrveranstaltung im Rahmen der Vorgaben des
+      Studien- und Prüfungsplans festgelegt.
+    citation: § 9 Abs. 1 AB NaS, S. 123
+    status: binding
+  - id: uk_nas_failed_exam_repeats
+    trigger: examination_rules
+    parameter: failed_exam_repeats
+    value: 2
+    citation: § 9 Abs. 2 AB NaS, S. 123
+    status: binding
+  - id: uk_nas_no_repeat_passed_exam
+    trigger: examination_rules
+    rule: Bestandene Modulprüfungen oder Modulteilprüfungen dürfen nicht wiederholt werden.
+    citation: § 9 Abs. 2 AB NaS, S. 123
+    status: binding
+  - id: uk_nas_module_pass_rule
+    trigger: examination_rules
+    rule: Ein Modul ist bestanden, wenn die Modulnote mindestens 4,0 beträgt und jede Modulteilnote mindestens 4,0
+      beträgt.
+    citation: § 10 Abs. 1 AB NaS, S. 124
+    status: binding
+  grading_rules:
+  - id: uk_nas_focus_grade_default
+    trigger: examination_rules
+    rule: Die Schwerpunktnote wird grundsätzlich aus den Modulnoten nach Credits gewichtet gebildet, sofern die
+      Tabelle in § 10 Abs. 2 keine abweichende Gewichtung festlegt.
+    citation: § 10 Abs. 2 AB NaS, S. 124–125
+    status: binding
+  - id: uk_nas_minor_grade_weights
+    applies_if:
+      integration_mode: minor
+    trigger: examination_rules
+    weights:
+      sustainability_focus: 45
+      Grundlagen und Theorien der Nachhaltigkeit: 15
+      Erkenntnistheorie und Methoden der Nachhaltigkeit: 15
+      Projekt Nachhaltigkeitsstudien: 25
+    unit: percent
+    citation: § 10 Abs. 3 AB NaS, S. 125
+    status: binding
+  change_governance:
+  - id: uk_nas_study_plan_change_process
+    trigger: documentation_completeness
+    rule: Änderungen des Studien- und Prüfungsplans werden nur von den betroffenen Fachbereichsräten bzw. dem Kunsthochschulrat
+      beschlossen; anschließend folgen Vorlage an die Senatskommission für Studium und Lehre, Zustimmung des Senats
+      und Genehmigung des Präsidiums.
+    citation: § 11 AB NaS, S. 125
+    status: binding
+  validation:
+  - id: NAS_VAL_001
+    rule: AB NaS nur anwenden, wenn das Feature sustainability_studies tatsächlich aktiviert ist.
+  - id: NAS_VAL_002
+    rule: Bei aktiviertem Feature muss der integration_mode bestimmt oder als UNKLAR ausgewiesen werden.
+  - id: NAS_VAL_003
+    rule: InAS A/B nicht allein aus thematischer Nachhaltigkeitsausrichtung ableiten.
+  - id: NAS_VAL_004
+    rule: Doppelcreditierung ist nur anhand des konkreten Curriculums und der tatsächlich verwendeten Module/Leistungen
+      zu prüfen.
+  - id: NAS_VAL_005
+    rule: Für elective_focus keine besondere Zuständigkeitsregel erfinden, die § 4 AB NaS nicht ausdrücklich enthält.

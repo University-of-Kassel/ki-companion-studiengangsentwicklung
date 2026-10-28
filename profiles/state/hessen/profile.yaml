@@ -1,0 +1,92 @@
+profile:
+  id: hessen
+  version: '1.2'
+  name: Hessen
+  description: 'Landesprofil für Studiengang-CompAIgnon-Prüfungen an Hochschulen in Hessen.
+
+    '
+  jurisdiction:
+    country_code: DE
+    state_code: HE
+    state_name: Hessen
+  inherits:
+  - regulatory/de
+  regulatory_levels:
+  - id: state_law
+    name: Landesrecht
+  precedence:
+    precedence_extensions:
+    - level: state_law
+      relative_position: above_institution
+  sources:
+  - id: hesshg
+    title: Hessisches Hochschulgesetz
+    regulatory_level: state_law
+    source_type: law
+    status: binding
+    scope:
+      jurisdiction:
+        country: DE
+        state: HE
+      subject_area:
+      - programme_structure
+      - examinations
+      - admission
+      - recognition
+      - graduation
+      - quality_assurance
+      - documentation
+    knowledge_file: knowledge/hesshg.pdf
+  - id: hestakv
+    title: Hessische Studienakkreditierungsverordnung
+    regulatory_level: state_law
+    source_type: regulation
+    status: binding
+    scope:
+      jurisdiction:
+        country: DE
+        state: HE
+      subject_area:
+      - programme_structure
+      - modularisation
+      - workload_and_credits
+      - qualification_objectives
+      - learning_outcomes
+      - quality_assurance
+      - graduation
+      - documentation
+      - teacher_education
+      - joint_programmes
+      - accreditation
+    knowledge_file: knowledge/hestakv.pdf
+  - id: hestakv_explanatory
+    title: Begründung zur Hessischen Studienakkreditierungsverordnung
+    regulatory_level: state_law
+    source_type: explanatory_document
+    status: interpretative
+    scope:
+      jurisdiction:
+        country: DE
+        state: HE
+      subject_area:
+      - programme_structure
+      - modularisation
+      - workload_and_credits
+      - qualification_objectives
+      - learning_outcomes
+      - quality_assurance
+      - graduation
+      - documentation
+      - teacher_education
+      - joint_programmes
+      - accreditation
+    knowledge_file: knowledge/hestakv-begruendung.pdf
+  scope_guards:
+  - id: HE_SCOPE_001
+    rule: 'Dieses Profil nur für Institutionen in Hessen aktivieren.
+
+      '
+  - id: HE_SCOPE_002
+    rule: 'Vorgaben anderer Bundesländer nicht als verbindlichen Prüfmaßstab verwenden.
+
+      '

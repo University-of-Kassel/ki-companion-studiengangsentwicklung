@@ -1,0 +1,85 @@
+profile:
+  id: university-kassel
+  version: '1.3'
+  name: Universität Kassel
+  institution:
+    id: university-kassel
+    name: Universität Kassel
+    type: university
+  jurisdiction:
+    country_code: DE
+    state_code: HE
+  inherits:
+  - regulatory/de
+  - profiles/state/hessen
+  regulatory_levels:
+  - id: institution
+    name: Hochschule
+  sources:
+  - id: ab_bama
+    title: Allgemeine Bestimmungen für Bachelor- und Masterstudiengänge
+    regulatory_level: institution
+    source_type: statute
+    status: binding
+    scope:
+      institution: university-kassel
+      programme_type:
+      - bachelor
+      - master
+      subject_area:
+      - programme_structure
+      - modularisation
+      - workload_and_credits
+      - examinations
+      - study_achievements
+      - qualification_objectives
+      - learning_outcomes
+      - graduation
+      - documentation
+      - recognition
+    knowledge_file: knowledge/ab-bama.pdf
+  - id: ab_practical_modules
+    title: Allgemeine Bestimmungen für Praxismodule
+    regulatory_level: institution
+    source_type: statute
+    status: binding
+    scope:
+      institution: university-kassel
+      subject_area:
+      - practical_components
+      - workload_and_credits
+      - study_achievements
+      - documentation
+    knowledge_file: knowledge/ab-praxismodule.pdf
+  available_programme_features:
+  - id: sustainability_studies
+    name: Nachhaltigkeitsstudien / Integrierte Nachhaltigkeitsstudien
+    profile_path: programme-features/nachhaltigkeitsstudien/profile.yaml
+    optional: true
+    activation:
+      explicit_context_flag: sustainability_studies
+      strong_document_signals:
+      - AB NaS
+      - Bachelor-Nebenfach Nachhaltigkeitsstudien
+      - Integrierte Nachhaltigkeitsstudien A
+      - Integrierte Nachhaltigkeitsstudien B
+      - Nachhaltigkeitsstudien-Schwerpunkt
+      ambiguous_signal_policy: do_not_activate_without_sufficient_document_evidence
+  planned_sources:
+  - id: programme_concept_form
+    title: Formular Studiengangskonzept
+    regulatory_level: institution
+    source_type: institutional_template
+    status: source_missing
+    scope:
+      institution: university-kassel
+      object_type:
+      - programme_concept
+      subject_area:
+      - documentation
+      - programme_structure
+      - quality_assurance
+      - qualification_objectives
+    default_enabled: false
+    expected_knowledge_file: knowledge/studiengangskonzept.pdf
+    note: Nicht aktivieren, bis die tatsächliche Kasseler Vorlage Studiengangskonzept im Knowledge-Ordner vorliegt.

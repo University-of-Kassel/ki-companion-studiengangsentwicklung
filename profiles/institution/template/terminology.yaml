@@ -1,0 +1,40 @@
+terminology:
+  version: "1.0"
+  institution: "<INSTITUTION_ID>"
+
+  description: >
+    Hochschulspezifische Terminologie für die sprachliche Ausgabe von Studiengang-CompAIgnon.
+    Diese Datei verändert keine fachliche Bewertung, sondern nur die
+    institutionell passende Bezeichnung von Organisationseinheiten,
+    Gremien und Rollen.
+
+  preferred_terms: []
+
+  avoided_terms: []
+
+  replacements:
+
+    # Beispiel:
+    #
+    # - concept: "academic_unit"
+    #   preferred: "Fachbereich"
+    #   avoid:
+    #     - "Fakultät"
+
+    # - concept: "university_leadership"
+    #   preferred: "Präsidium"
+    #   avoid:
+    #     - "Rektorat"
+
+  special_units: []
+
+  validation:
+
+    - id: "TERM_VAL_001"
+      rule: >
+        Terminologie darf keine fachliche oder normative Bewertung verändern.
+
+    - id: "TERM_VAL_002"
+      rule: >
+        Begriffe ohne institutionelle Festlegung werden nicht künstlich
+        ersetzt.

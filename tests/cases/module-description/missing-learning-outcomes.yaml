@@ -1,0 +1,11 @@
+test_case:
+  id: "missing_learning_outcomes_demo"
+  description: >
+    Fiktiver Testfall für eine nach Profildefinition fehlende Pflichtangabe.
+  context:
+    profile: "example-university"
+    object_type: "module_handbook"
+  document:
+    module_id: "M2"
+    module_name: "Example Module Without Outcomes"
+    credits: 5

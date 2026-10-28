@@ -1,0 +1,530 @@
+trigger_mapping:
+  version: '2.3'
+  purpose: 'Generische Zuordnung von Kontextmerkmalen zu fachlichen Prüf-Triggern. Diese Datei bestimmt, welche
+    Prüfungen im konkreten Fall aktiviert werden dürfen. Sie enthält keine konkreten Rechtsquellen und keine institutionsspezifischen
+    Normanker.
+
+    '
+  principle: 'Trigger aktivieren Prüfbereiche. Ob eine daraus resultierende Bewertung normativ tragfähig ist, entscheidet
+    erst die Kombination aus Scope Matcher, Normlogik und den aktiven Regelquellen.
+
+    '
+  trigger_catalog:
+    workload_credit_relation:
+      description: 'Prüfung der Kohärenz zwischen ausgewiesenem Workload und Leistungspunkten.
+
+        '
+      default_subject_area:
+      - workload_and_credits
+      expected_evidence:
+      - workload
+      - credits
+      - module_description
+    bachelor_structure:
+      description: 'Prüfung struktureller Anforderungen eines Bachelorstudiengangs.
+
+        '
+      default_subject_area:
+      - programme_structure
+      expected_evidence:
+      - study_plan
+      - standard_period_of_study
+      - programme_scope
+      - module_structure
+    master_structure:
+      description: 'Prüfung struktureller Anforderungen eines Masterstudiengangs.
+
+        '
+      default_subject_area:
+      - programme_structure
+      expected_evidence:
+      - study_plan
+      - standard_period_of_study
+      - programme_scope
+      - admission_requirements
+    programme_structure:
+      description: Prüfung programmweiter Strukturvorgaben, die unabhängig vom Abschlusszyklus gelten.
+      default_subject_area:
+      - programme_structure
+      expected_evidence:
+      - study_plan
+      - curriculum
+      - programme_scope
+      - examination_regulations
+    modularisation:
+      description: 'Prüfung der Modularisierung und der inneren Struktur von Modulen.
+
+        '
+      default_subject_area:
+      - modularisation
+      expected_evidence:
+      - module_description
+      - module_structure
+      - module_completion
+    competence_orientation:
+      description: 'Prüfung der Lern- und Kompetenzziele sowie ihrer Nachvollziehbarkeit.
+
+        '
+      default_subject_area:
+      - learning_outcomes
+      - qualification_objectives
+      expected_evidence:
+      - learning_outcomes
+      - competences
+      - module_description
+      - programme_objectives
+    assessment_alignment:
+      description: 'Prüfung der Passung zwischen Kompetenzzielen und Prüfungsformen.
+
+        '
+      default_subject_area:
+      - examinations
+      - learning_outcomes
+      expected_evidence:
+      - assessment_type
+      - competences
+      - learning_outcomes
+    examination_rules:
+      description: Prüfung allgemeiner Prüfungsregelungen, insbesondere Wiederholung, Bestehen, Bewertung und Gewichtung.
+      default_subject_area:
+      - examinations
+      expected_evidence:
+      - examination_regulations
+      - assessment_rules
+      - grading_rules
+      - repeat_rules
+    study_achievements:
+      description: 'Prüfung der Verwendung, Abgrenzung und Häufung von Studienleistungen oder vergleichbaren nicht
+        benoteten Leistungsnachweisen.
+
+        '
+      default_subject_area:
+      - study_achievements
+      - examinations
+      expected_evidence:
+      - study_achievement
+      - assessment
+      - examination_regulations
+      - module_description
+    key_competences:
+      description: 'Prüfung von Schlüsselkompetenzen oder vergleichbaren überfachlichen Kompetenzanteilen, sofern
+        diese im aktiven Regelwerk vorgesehen sind.
+
+        '
+      default_subject_area:
+      - qualification_objectives
+      - learning_outcomes
+      expected_evidence:
+      - module_description
+      - learning_outcomes
+      - study_plan
+    practical_components:
+      description: 'Prüfung von Praxisphasen, Praktika oder Praxismodulen.
+
+        '
+      default_subject_area:
+      - practical_components
+      expected_evidence:
+      - practical_phase
+      - internship
+      - module_description
+      - study_plan
+    teacher_education:
+      description: 'Aktiviert lehramts- oder lehrerbildungsbezogene Prüfungen.
+
+        '
+      default_subject_area:
+      - teacher_education
+      expected_evidence:
+      - programme_features
+      - module_structure
+      - study_plan
+      - competence_profile
+    quality_assurance:
+      description: 'Prüfung dokumentierter Qualitätssicherungsmechanismen auf Studiengangsebene, soweit dies Teil
+        des Prüfauftrags ist.
+
+        '
+      default_subject_area:
+      - quality_assurance
+      expected_evidence:
+      - evaluation
+      - quality_management
+      - programme_concept
+    joint_programmes:
+      description: 'Aktiviert Prüfungen für Joint Programmes, Joint Degrees oder vergleichbare kooperative Studiengangsmodelle.
+
+        '
+      default_subject_area:
+      - joint_programmes
+      - quality_assurance
+      expected_evidence:
+      - cooperation_agreement
+      - programme_structure
+      - governance
+      - degree_award
+    language_admission:
+      description: 'Prüfung sprachlicher Zugangsvoraussetzungen.
+
+        '
+      default_subject_area:
+      - language_admission
+      - admission
+      expected_evidence:
+      - admission_requirements
+      - language_requirements
+      - language_certificates
+    recognition:
+      description: 'Prüfung von Anerkennungs- und Anrechnungsregelungen, sofern diese Gegenstand des Prüfauftrags
+        sind.
+
+        '
+      default_subject_area:
+      - recognition
+      expected_evidence:
+      - recognition_rules
+      - examination_regulations
+    graduation:
+      description: 'Prüfung von Abschlussmodul, Abschlussarbeit und sonstigen Abschlussanforderungen.
+
+        '
+      default_subject_area:
+      - graduation
+      - examinations
+      expected_evidence:
+      - thesis
+      - final_module
+      - assessment
+      - credits
+    documentation_completeness:
+      description: 'Prüfung der Vollständigkeit dokumentierter Pflichtangaben anhand des aktiven Regelwerks.
+
+        '
+      default_subject_area:
+      - documentation
+      expected_evidence:
+      - module_description
+      - programme_concept
+      - examination_regulations
+    missing_reference:
+      description: 'Wird aktiviert, wenn eine anwendbare Regelquelle auf ein nicht verfügbares Referenzdokument
+        verweist.
+
+        '
+      default_subject_area:
+      - documentation
+      expected_evidence:
+      - normative_reference
+    attendance_requirements:
+      description: Prüfung von Anwesenheits-, Teilnahme- oder Mitwirkungsanforderungen.
+      default_subject_area:
+      - examinations
+      - study_achievements
+      - documentation
+      expected_evidence:
+      - attendance_requirement
+      - attendance_list
+      - participation_requirement
+      - active_participation
+  activation_rules:
+    workload_credit_relation:
+      activate_if:
+        any:
+        - object_type: module_handbook
+        - subject_area: workload_and_credits
+        - evidence_present: workload
+        - evidence_present: credits
+      suppress_if:
+        all:
+        - evidence_absent: workload
+        - evidence_absent: credits
+      note: 'Fehlen beide Angaben vollständig, kann stattdessen oder zusätzlich documentation_completeness aktiviert
+        werden.
+
+        '
+    bachelor_structure:
+      activate_if:
+        any:
+        - programme_type: bachelor
+      suppress_if:
+        any:
+        - programme_type: master
+        - programme_type: state_examination
+    master_structure:
+      activate_if:
+        any:
+        - programme_type: master
+      suppress_if:
+        any:
+        - programme_type: bachelor
+        - programme_type: state_examination
+    programme_structure:
+      activate_if:
+        any:
+        - subject_area: programme_structure
+        - object_type: examination_regulation
+        - object_type: study_and_examination_plan
+        - object_type: curriculum
+        - object_type: programme_concept
+    modularisation:
+      activate_if:
+        any:
+        - object_type: module_handbook
+        - object_type: examination_regulation
+        - subject_area: modularisation
+    competence_orientation:
+      activate_if:
+        any:
+        - object_type: module_handbook
+        - object_type: programme_concept
+        - subject_area: learning_outcomes
+        - subject_area: qualification_objectives
+    assessment_alignment:
+      activate_if:
+        all:
+        - any:
+          - evidence_present: assessment_type
+          - object_type: examination_regulation
+          - object_type: module_handbook
+        - any:
+          - evidence_present: learning_outcomes
+          - evidence_present: competences
+    study_achievements:
+      activate_if:
+        any:
+        - evidence_present: study_achievement
+        - subject_area: study_achievements
+    key_competences:
+      activate_if:
+        any:
+        - evidence_present: key_competences
+        - profile_flag: key_competences_relevant
+      suppress_if:
+        any:
+        - profile_flag: key_competences_not_applicable
+    practical_components:
+      activate_if:
+        any:
+        - evidence_present: practical_phase
+        - evidence_present: internship
+        - programme_feature: mandatory_practical_phase
+        - subject_area: practical_components
+    teacher_education:
+      activate_if:
+        any:
+        - programme_feature: teacher_education
+        - profile_flag: teacher_education
+    quality_assurance:
+      activate_if:
+        any:
+        - object_type: programme_concept
+        - subject_area: quality_assurance
+        - evidence_present: quality_management
+        - evidence_present: evaluation
+    joint_programmes:
+      activate_if:
+        any:
+        - programme_feature: joint_programme
+        - programme_feature: joint_degree
+        - programme_feature: double_degree
+        - programme_feature: multiple_degree
+    language_admission:
+      activate_if:
+        any:
+        - subject_area: language_admission
+        - evidence_present: language_requirements
+        - evidence_present: language_certificates
+    recognition:
+      activate_if:
+        any:
+        - subject_area: recognition
+        - evidence_present: recognition_rules
+    graduation:
+      activate_if:
+        any:
+        - evidence_present: thesis
+        - evidence_present: final_module
+        - subject_area: graduation
+    documentation_completeness:
+      activate_if:
+        any:
+        - object_type: module_handbook
+        - object_type: programme_concept
+        - object_type: examination_regulation
+        - profile_flag: completeness_check_enabled
+    missing_reference:
+      activate_if:
+        any:
+        - normative_reference_missing: true
+    attendance_requirements:
+      activate_if:
+        any:
+        - evidence_present: attendance_requirement
+        - evidence_present: attendance_list
+        - evidence_present: participation_requirement
+        - evidence_present: active_participation
+        - profile_flag: attendance_check_enabled
+    examination_rules:
+      activate_if:
+        any:
+        - evidence_present: examination_regulations
+        - evidence_present: assessment_rules
+        - evidence_present: grading_rules
+        - object_type: examination_regulation
+  trigger_guards:
+    teacher_education:
+      allow_if:
+        any:
+        - programme_feature: teacher_education
+        - profile_flag: teacher_education
+      otherwise: block_trigger
+    joint_programmes:
+      allow_if:
+        any:
+        - programme_feature: joint_programme
+        - programme_feature: joint_degree
+        - programme_feature: double_degree
+        - programme_feature: multiple_degree
+      otherwise: block_trigger
+    language_admission:
+      allow_if:
+        any:
+        - subject_area: language_admission
+        - evidence_present: language_requirements
+        - evidence_present: language_certificates
+      otherwise: block_trigger
+    bachelor_structure:
+      allow_if:
+        any:
+        - programme_type: bachelor
+      otherwise: block_trigger
+    master_structure:
+      allow_if:
+        any:
+        - programme_type: master
+      otherwise: block_trigger
+    attendance_requirements:
+      allow_if:
+        any:
+        - evidence_present: attendance_requirement
+        - evidence_present: attendance_list
+        - evidence_present: participation_requirement
+        - profile_flag: attendance_check_enabled
+      otherwise: not_relevant
+  dependencies:
+    assessment_alignment:
+      requires_any:
+      - competence_orientation
+      - evidence_present: learning_outcomes
+      - evidence_present: competences
+    key_competences:
+      requires_any:
+      - profile_flag: key_competences_relevant
+      - evidence_present: key_competences
+    missing_reference:
+      requires_any:
+      - normative_reference_missing: true
+  trigger_results:
+    allowed:
+      meaning: 'Trigger darf ausgeführt werden.
+
+        '
+    blocked:
+      meaning: 'Trigger fällt außerhalb des festgestellten Scopes.
+
+        '
+    unclear:
+      meaning: 'Es fehlen Kontextinformationen, um über die Aktivierung sicher zu entscheiden.
+
+        '
+    not_relevant:
+      meaning: 'Trigger ist für den konkreten Prüfauftrag nicht einschlägig.
+
+        '
+  processing_sequence:
+  - step: 1
+    action: collect_context
+  - step: 2
+    action: evaluate_activation_rules
+  - step: 3
+    action: apply_trigger_guards
+  - step: 4
+    action: resolve_dependencies
+  - step: 5
+    action: send_allowed_triggers_to_scope_matcher
+  - step: 6
+    action: link_applicable_sources_via_norm_logic
+  - step: 7
+    action: emit_trigger_set
+  output:
+    fields:
+    - trigger_id
+    - trigger_status
+    - activation_reason
+    - required_evidence
+    - available_evidence
+    - missing_evidence
+    - subject_area
+  validation:
+    rules:
+    - id: TRIGGER_VAL_001
+      description: 'Ein Spezialtrigger darf nicht außerhalb seines definierten Programm- oder Sachkontexts aktiviert
+        werden.
+
+        '
+      on_violation: block_trigger
+    - id: TRIGGER_VAL_002
+      description: 'Trigger dürfen keine konkrete Rechtsquelle voraussetzen.
+
+        '
+      on_violation: remove_source_dependency
+    - id: TRIGGER_VAL_003
+      description: 'Fehlende Evidenz darf nicht als positive Evidenz behandelt werden.
+
+        '
+      on_violation: mark_trigger_unclear
+    - id: TRIGGER_VAL_004
+      description: 'Ein aktivierter Trigger begründet für sich allein keine Normabweichung.
+
+        '
+      on_violation: block_normative_assessment
+    - id: TRIGGER_VAL_005
+      description: 'Institutionelle oder landesspezifische Trigger dürfen nur über aktive Profile ergänzt werden.
+
+        '
+      on_violation: reject_local_core_rule
+    - id: TRIGGER_VAL_006
+      description: Teacher education, joint programme and continuing education are overlay features, not mutually
+        exclusive degree cycles.
+      on_violation: normalize_to_programme_features
+    - id: TRIGGER_VAL_007
+      description: Allgemeine Wiederholungs-, Bestehens- und Gewichtungsregeln nicht unter assessment_alignment
+        subsumieren.
+      on_violation: use_examination_rules_trigger
+    - id: TRIGGER_VAL_008
+      description: Jeder in einer Profilregel verwendete Trigger muss im trigger_catalog registriert sein.
+      on_violation: configuration_error
+  extension_points:
+    regulatory_profile_may_add:
+    - new_triggers
+    - trigger_activation_conditions
+    - trigger_guards
+    - expected_evidence
+    institution_profile_may_add:
+    - local_triggers
+    - local_trigger_conditions
+    - local_completeness_checks
+    restriction: 'Profil-Erweiterungen dürfen bestehende Core-Guardrails nicht stillschweigend aufheben.
+
+      '
+  architecture:
+    core_must_not_contain:
+    - concrete_legal_source
+    - concrete_state_name
+    - concrete_institution_name
+    - fixed_local_threshold
+    - fixed_local_document_name
+    invariant: 'Ein Wechsel von Bundesland, Hochschule oder lokalem Regelwerk darf keine Änderung dieser Datei erforderlich
+      machen.
+
+      '

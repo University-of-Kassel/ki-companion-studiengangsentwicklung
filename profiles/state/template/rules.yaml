@@ -1,0 +1,56 @@
+rules:
+  version: '1.1'
+  profile: state-template
+  description: 'Vorlage für landesspezifische Studiengang-CompAIgnon-Regeln. Hier werden nur solche Prüfparameter, Trigger-Erweiterungen
+    oder Konkretisierungen hinterlegt, die tatsächlich aus den Regelquellen des jeweiligen Bundeslandes ableitbar
+    sind.
+
+    '
+  quantitative_rules: []
+  required_fields: {}
+  trigger_extensions: []
+  conflict_extensions: []
+  programme_type_rules:
+    bachelor: []
+    master: []
+    state_examination: []
+    other: []
+  comply_or_explain:
+    enabled_rules: []
+  source_interpretation_rules:
+  - id: STATE_RULE_001
+    rule: 'Jede landesspezifische Prüfregel muss auf eine im profile.yaml registrierte Regelquelle und eine zitierfähige
+      Fundstelle verweisen.
+
+      '
+  - id: STATE_RULE_002
+    rule: 'Fehlt eine belastbare Fundstelle, darf die Regel nicht als verbindlicher Prüfmaßstab verwendet werden.
+
+      '
+  - id: STATE_RULE_003
+    rule: 'Landesrechtliche Konkretisierungen dürfen nicht als allgemeine bundesweite Studiengang-CompAIgnon-Regeln ausgegeben werden.
+
+      '
+  validation:
+  - id: STATE_VAL_001
+    description: 'Keine landesspezifische Regel ohne source und citation.
+
+      '
+    action_on_violation: disable_rule
+  - id: STATE_VAL_002
+    description: 'Keine hochschulspezifische Regel in diesem Profil.
+
+      '
+    action_on_violation: move_to_institution_profile
+  - id: STATE_VAL_003
+    description: 'Keine bloße Verwaltungspraxis als verbindliche Norm klassifizieren.
+
+      '
+    action_on_violation: downgrade_or_remove_rule
+  programme_feature_rules:
+    teacher_education: []
+    joint_programme: []
+    continuing_education: []
+    dual: []
+    part_time: []
+    distance_learning: []

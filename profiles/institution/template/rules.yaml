@@ -1,0 +1,75 @@
+rules:
+  version: '1.1'
+  profile: institution-template
+  description: 'Vorlage für hochschulspezifische Studiengang-CompAIgnon-Prüfregeln. Jede Regel muss auf eine im profile.yaml registrierte
+    institutionelle Quelle verweisen und eine zitierfähige Fundstelle besitzen.
+
+    '
+  quantitative_rules: []
+  required_fields:
+    module_handbook: []
+    programme_concept: []
+    examination_regulations: []
+  examination_rules: []
+  study_achievement_rules: []
+  key_competence_rules: []
+  practical_component_rules: []
+  graduation_rules: []
+  programme_type_rules:
+    bachelor: []
+    master: []
+    state_examination: []
+    other: []
+  trigger_extensions: []
+  conflict_extensions: []
+  comply_or_explain:
+    enabled_rules: []
+  local_quality_checks:
+    description: 'Nichtnormative institutionelle Qualitätsprüfungen können hier ergänzt werden. Sie müssen klar
+      als Hinweis oder Qualitätsmaßstab gekennzeichnet sein und dürfen nicht als Rechtsverstoß ausgegeben werden.
+
+      '
+    checks: []
+  source_interpretation_rules:
+  - id: INST_RULE_001
+    rule: 'Jede institutionelle Prüfregel muss source und citation enthalten.
+
+      '
+  - id: INST_RULE_002
+    rule: 'Lokale Praxis oder Gewohnheit ist keine verbindliche Regel, sofern sie nicht durch eine zitierfähige
+      institutionelle Quelle gestützt wird.
+
+      '
+  - id: INST_RULE_003
+    rule: 'Institutionelle Regelungen dürfen nicht als allgemeine landes- oder bundesweite Studiengang-CompAIgnon-Regeln ausgegeben
+      werden.
+
+      '
+  validation:
+  - id: INST_VAL_001
+    description: 'Keine institutionelle Regel ohne registrierte Quelle und Fundstelle.
+
+      '
+    action_on_violation: disable_rule
+  - id: INST_VAL_002
+    description: 'Keine Landesnorm in rules.yaml duplizieren.
+
+      '
+    action_on_violation: move_to_state_profile
+  - id: INST_VAL_003
+    description: 'Keine bloße Empfehlung als verbindliche Norm klassifizieren.
+
+      '
+    action_on_violation: downgrade_to_note
+  - id: INST_VAL_004
+    description: 'Quantitative Schwellenwerte müssen quellenbelegt sein.
+
+      '
+    action_on_violation: disable_quantitative_rule
+  programme_feature_rules:
+    teacher_education: []
+    joint_programme: []
+    continuing_education: []
+    dual: []
+    part_time: []
+    distance_learning: []

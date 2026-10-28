@@ -1,0 +1,76 @@
+studiengang_compaignon_norm_logic:
+  version: '2.1'
+  purpose: Quellenbindung, Konfliktauflösung, Regelzusammenführung und Ergebnisabsicherung.
+  principles:
+    source_binding: true
+    scope_before_content: true
+    no_assumption: true
+    analysis_documents_are_not_norms_by_default: true
+    transparent_conflict_resolution: true
+  source_status_effects:
+    binding: may_support_deviation
+    binding_framework: may_support_deviation_with_qualifier_and_exception_logic
+    interpretative: may_explain_but_not_create_new_binding_requirement
+    supplementary: context_only_unless_profile_explicitly_strengthens
+    informative: context_only
+    inactive: never_apply
+  applicability_sequence:
+  - source_available
+  - source_active
+  - scope_match
+  - subject_match
+  - temporal_validity
+  conflict_resolution:
+  - explicit_supersession
+  - binding_status_and_regulatory_level_from_active_profiles
+  - specificity_within_comparable_level
+  - chronology_within_comparable_level_and_same_regulated_object
+  - otherwise_unresolved
+  no_universal_total_hierarchy: true
+  rule_merge:
+    semantic_key: Rules concerning the same trigger/parameter/object should share or derive a semantic key.
+    duplicate_finding_prevention: true
+    same_requirement_multiple_sources:
+      action: merge_supporting_sources
+      emit_one_finding: true
+    parameter_constraints:
+      range_plus_range: intersection_if_compatible_else_norm_conflict
+      default_plus_range: keep_range_and_mark_default_as_preferred_value
+      minimum_plus_minimum: use_stricter_minimum_only_if_higher_or_equal authority permits
+      maximum_plus_maximum: use_stricter_maximum_only_if_higher_or_equal authority permits
+    local_restatement: A lower profile may confirm a higher-level requirement without generating a second finding.
+    supports_rule_field: link confirming rule to existing semantic requirement
+    extends_rule_field: add narrower local requirements without replacing higher-level baseline
+    inherits_constraint_field: reuse a higher-level constraint instead of duplicating it
+  comply_or_explain:
+    default: false
+    enable_if:
+    - source_uses_soll_or_in_der_regel_and_allows_justified_deviation
+    - rule_explicitly_sets_comply_or_explain_true
+    result_on_unjustified_deviation: ABWEICHUNG
+    result_on_justified_deviation: KONFORM_OR_HINWEIS_DEPENDING_ON_SOURCE
+  missing_reference:
+    action: restrict_assessment
+    result: NICHT PRÜFBAR
+    never_substitute_model_knowledge: true
+  unresolved_norm_conflict:
+    result: UNKLAR
+    emit_conflict_log: true
+  result_guardrails:
+    ABWEICHUNG: requires applicable binding/binding_framework rule or explicit cross-document contradiction
+    KONFORM: requires sufficient positive evidence
+    NICHT_PRÜFBAR: used when evidence or required source is missing
+    HINWEIS: must not be presented as a normative defect
+  validation:
+  - id: NORM_VAL_001
+    rule: Keine Abweichung ohne anwendbare normative Grundlage.
+  - id: NORM_VAL_002
+    rule: Interpretative Quelle erzeugt keine neue Pflicht.
+  - id: NORM_VAL_003
+    rule: Doppelte Regeln mit gleichem semantic_key erzeugen nur einen Befund.
+  - id: NORM_VAL_004
+    rule: Default-Wert darf zulässigen Wertebereich nicht verengen.
+  - id: NORM_VAL_005
+    rule: Unaufgelöster Konflikt bleibt UNKLAR.
+  - id: NORM_VAL_006
+    rule: Fehlende Evidenz ist keine Konformität.

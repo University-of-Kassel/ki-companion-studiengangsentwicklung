@@ -1,0 +1,26 @@
+terminology:
+  version: "1.0"
+  institution: "university-kassel"
+
+  replacements:
+    - concept: "academic_unit"
+      preferred: "Fachbereich"
+      avoid:
+        - "Fakultät"
+
+    - concept: "university_leadership"
+      preferred: "Präsidium"
+      avoid:
+        - "Rektorat"
+
+    - concept: "central_administration_unit"
+      preferred: "Abteilung"
+      avoid:
+        - "Dezernat"
+
+  special_units:
+    - id: "kunsthochschule"
+      preferred_name: "Kunsthochschule Kassel"
+      description: >
+        Teilautonome Kunsthochschule im Rang eines Fachbereichs mit eigener Leitung.
+      leadership_term: "Rektorat der Kunsthochschule"

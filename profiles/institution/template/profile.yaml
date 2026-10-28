@@ -1,0 +1,81 @@
+profile:
+  id: "institution-template"
+  version: "1.0"
+  name: "Institutionsprofil – Template"
+  description: >
+    Vorlage für ein hochschulspezifisches Studiengang-CompAIgnon-Profil. Dieses Profil ergänzt
+    die regulatorische Basisschicht und ein aktives Landesprofil um
+    institutionelle Satzungen, lokale Prüfregeln, Zuständigkeiten und
+    hochschulspezifische Konventionen.
+
+  institution:
+    id: "<INSTITUTION_ID>"
+    name: "<INSTITUTION_NAME>"
+    type: "<INSTITUTION_TYPE>"
+
+  jurisdiction:
+    country_code: "DE"
+    state_code: "<STATE_CODE>"
+
+  inherits:
+    - "regulatory/de"
+    - "profiles/state/<STATE_PROFILE>"
+
+  language:
+    default: "de"
+
+  regulatory_levels:
+    - id: "institution"
+      name: "Hochschule"
+      description: >
+        Hochschulspezifische Satzungen, Allgemeine Bestimmungen,
+        Rahmenordnungen und weitere institutionell verbindliche Regelungen.
+
+  sources:
+
+    - id: "<GENERAL_REGULATIONS_ID>"
+      title: "<TITLE_GENERAL_REGULATIONS>"
+      regulatory_level: "institution"
+      source_type: "statute"
+      status: "binding"
+      scope:
+        institution: "<INSTITUTION_ID>"
+        subject_area:
+          - programme_structure
+          - modularisation
+          - workload_and_credits
+          - examinations
+          - study_achievements
+          - graduation
+      knowledge_file: "knowledge/<general-regulations>.pdf"
+
+  optional_sources:
+    examples:
+      - general_regulations_bachelor_master
+      - general_regulations_teacher_education
+      - general_regulations_sustainability_programmes
+      - practical_module_regulations
+      - programme_concept_template
+      - institutional_quality_guidelines
+      - institutional_interpretation_notes
+
+  scope_guards:
+
+    - id: "INST_SCOPE_001"
+      rule: >
+        Institutionelle Regelquellen dürfen nur auf Studiengänge dieser
+        Institution angewandt werden.
+
+    - id: "INST_SCOPE_002"
+      rule: >
+        Fakultäts-, fachbereichs- oder studiengangsspezifische Regelungen dürfen
+        nur auf den jeweils dokumentierten Geltungsbereich angewandt werden.
+
+    - id: "INST_SCOPE_003"
+      rule: >
+        Institutionelle Auslegungshinweise dürfen nicht als höherrangige
+        Rechtsquelle behandelt werden.
+
+  architecture_rule: >
+    Dieses Profil enthält nur hochschulspezifische Inhalte. Landesrecht und
+    bundesweite Regelungen gehören nicht in diesen Ordner.

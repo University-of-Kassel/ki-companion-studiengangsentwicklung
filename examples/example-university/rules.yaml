@@ -1,0 +1,42 @@
+rules:
+  version: "1.0"
+  profile: "example-university"
+  demo_only: true
+
+  quantitative_rules:
+    - id: "example_hours_per_credit"
+      trigger: "workload_credit_relation"
+      parameter: "hours_per_credit"
+      value: 25
+      source: "example_general_regulations"
+      citation: "Section 4(2)"
+      status: "binding"
+      demo_note: >
+        Dieser Wert ist absichtlich fiktiv und darf nicht als reale
+        hochschulrechtliche Vorgabe verwendet werden.
+
+  required_fields:
+    module_handbook:
+      - field: "module_title"
+        required: true
+        source: "example_general_regulations"
+        citation: "Appendix 1"
+
+      - field: "learning_outcomes"
+        required: true
+        source: "example_general_regulations"
+        citation: "Appendix 1"
+
+      - field: "credits"
+        required: true
+        source: "example_general_regulations"
+        citation: "Appendix 1"
+
+  local_quality_checks:
+    checks:
+      - id: "example_transparency_note"
+        description: >
+          Module sollten eine kurze Erläuterung der Verbindung zwischen
+          Lernzielen und Prüfungsform enthalten.
+        output_status: "HINWEIS"
+        normative: false

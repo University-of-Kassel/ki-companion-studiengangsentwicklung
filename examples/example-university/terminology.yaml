@@ -1,0 +1,20 @@
+terminology:
+  version: "1.0"
+  institution: "example-university"
+  demo_only: true
+
+  replacements:
+    - concept: "academic_unit"
+      preferred: "School"
+      avoid:
+        - "Faculty"
+
+    - concept: "university_leadership"
+      preferred: "Executive Board"
+      avoid:
+        - "Rectorate"
+
+    - concept: "central_administration_unit"
+      preferred: "Office"
+      avoid:
+        - "Department"

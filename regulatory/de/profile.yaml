@@ -1,0 +1,450 @@
+profile:
+  id: de
+  version: '1.3'
+  name: Deutschland – regulatorische Basis
+  description: 'Regulatorisches Basisprofil für die Prüfung von Studiengängen in Deutschland. Dieses Profil enthält
+    bundesweite bzw. übergreifende Regel- und Referenzquellen. Landesrecht und hochschulspezifische Regelungen werden
+    ausschließlich über zusätzliche Profile eingebunden.
+
+    '
+  jurisdiction:
+    country_code: DE
+    country_name: Deutschland
+  language:
+    default: de
+  regulatory_levels:
+  - id: supranational
+    name: Europäischer / überstaatlicher Rahmen
+    description: 'Übergreifende europäische Qualitäts- und Qualifikationsrahmen. Diese Quellen wirken grundsätzlich
+      rahmensetzend und sind nicht automatisch detailrechtliche Prüfmaßstäbe.
+
+      '
+  - id: interstate
+    name: Länderübergreifende / staatsvertragliche Ebene
+    description: 'Länderübergreifende Regelungen und Vereinbarungen, die für das deutsche Akkreditierungs- und Studiensystem
+      maßgeblich sein können.
+
+      '
+  - id: kmk
+    name: KMK / länderübergreifende Beschlussebene
+    description: 'Beschlüsse, Strukturvorgaben, Qualifikationsrahmen und sonstige länderübergreifende Referenzrahmen
+      der Kultusministerkonferenz.
+
+      '
+  - id: accreditation_council
+    name: Akkreditierungsrat
+    description: 'Beschlüsse, Auslegungen und sonstige akkreditierungsbezogene Regelungen bzw. Interpretationshilfen
+      des Akkreditierungsrates.
+
+      '
+  precedence:
+    description: Dieses Profil definiert bewusst keine vollständige Rangfolge zwischen allen übergreifenden Quellen.
+      Konflikte werden anhand von rechtlichem Status, expliziter Ablösung, zeitlicher Geltung, Scope und den aktiven
+      Landes- und Institutionsprofilen aufgelöst.
+    strategy:
+    - explicit_supersession
+    - applicable_binding_law_and_regulation
+    - scope_specificity_within_same_regulatory_level
+    - temporal_validity
+    - interpretative_and_supplementary_sources_only_for_interpretation
+    - unresolved_conflicts_remain_unclear
+    no_total_order: true
+  programme_types:
+  - bachelor
+  - master
+  - state_examination
+  - other
+  subject_areas:
+  - programme_structure
+  - modularisation
+  - workload_and_credits
+  - examinations
+  - study_achievements
+  - qualification_objectives
+  - learning_outcomes
+  - quality_assurance
+  - admission
+  - language_admission
+  - practical_components
+  - teacher_education
+  - joint_programmes
+  - recognition
+  - graduation
+  - documentation
+  - accreditation
+  sources:
+  - id: accreditation_treaty
+    title: Studienakkreditierungsstaatsvertrag
+    regulatory_level: interstate
+    source_type: treaty
+    status: binding_framework
+    effective_from: '2018-01-01'
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        country: DE
+      subject_area:
+      - accreditation
+      - quality_assurance
+      - programme_structure
+    knowledge_file: knowledge/accreditation/studienakkreditierungsstaatsvertrag.pdf
+    note: Rechtlicher Rahmen des Akkreditierungssystems. Die konkreten materiellen Kriterien werden durch die Landesrechtsverordnungen
+      ausgefüllt.
+  - id: mrvo_2024
+    title: Musterrechtsverordnung gemäß Art. 4 Abs. 1–4 Studienakkreditierungsstaatsvertrag
+    regulatory_level: interstate
+    source_type: model_regulation
+    status: supplementary
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        country: DE
+      subject_area:
+      - accreditation
+      - programme_structure
+      - modularisation
+      - workload_and_credits
+      - qualification_objectives
+      - learning_outcomes
+      - quality_assurance
+      - graduation
+      - joint_programmes
+      - teacher_education
+    knowledge_file: knowledge/accreditation/mrvo-2024.pdf
+    note: Aktuelles gemeinsames Muster. Rechtsverbindlich sind die jeweiligen Landesrechtsverordnungen; daher nicht
+      allein als unmittelbare Mangelgrundlage verwenden.
+  - id: hqr
+    title: Qualifikationsrahmen für deutsche Hochschulabschlüsse
+    regulatory_level: kmk
+    source_type: framework
+    status: binding_framework
+    version_date: '2017-02-16'
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        country: DE
+      subject_area:
+      - qualification_objectives
+      - learning_outcomes
+    knowledge_file: knowledge/qualifications-framework/hqr.pdf
+  - id: kmk_structure_framework
+    title: Ländergemeinsame Strukturvorgaben für die Akkreditierung von Bachelor- und Masterstudiengängen
+    regulatory_level: kmk
+    source_type: resolution
+    status: supplementary
+    version_date: '2010-02-04'
+    default_enabled: false
+    legacy_use: true
+    scope:
+      jurisdiction:
+        country: DE
+      programme_type:
+      - bachelor
+      - master
+      subject_area:
+      - programme_structure
+      - modularisation
+      - workload_and_credits
+      - graduation
+    activation_condition: historical analysis or accreditation procedure governed by pre-2018 law
+    knowledge_file: knowledge/accreditation/legacy/kmk-strukturvorgaben-2010.pdf
+    note: Für neue Akkreditierungen nicht als eigenständiger aktueller Rechtsmaßstab verwenden. Der Akkreditierungsrat
+      ordnet die Strukturvorgaben dem bisherigen Recht zu.
+  - id: kmk_accreditation_principles_2004
+    title: Eckpunkte für die Weiterentwicklung der Akkreditierung in Deutschland
+    regulatory_level: kmk
+    source_type: resolution
+    status: informative
+    version_date: '2004-10-15'
+    default_enabled: false
+    scope:
+      jurisdiction:
+        country: DE
+      subject_area:
+      - accreditation
+      - quality_assurance
+    knowledge_file: knowledge/accreditation/legacy/kmk-eckpunkte-akkreditierung-2004.pdf
+    note: Historisch-systemische Quelle; kein aktueller materieller Prüfmaßstab für Studiengänge.
+  - id: kmk_continuing_education
+    title: Bachelor- und Masterabschlüsse in der beruflichen Weiterbildung
+    regulatory_level: kmk
+    source_type: resolution
+    status: supplementary
+    version_date: '2009-02-05'
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        country: DE
+      programme_features:
+      - continuing_education
+      subject_area:
+      - programme_structure
+      - admission
+      - recognition
+    knowledge_file: knowledge/accreditation/kmk-weiterbildung-2009.pdf
+    note: Weiterhin von der KMK im Bereich Wissenschaftliche Weiterbildung geführt.
+  - id: ro_dt
+    title: Rahmenordnung über deutsche Sprachprüfungen für das deutschsprachige Studium an deutschen Hochschulen
+    regulatory_level: kmk
+    source_type: framework_regulation
+    status: binding_framework
+    version_date: '2025-11-27'
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        country: DE
+      subject_area:
+      - language_admission
+      - admission
+    knowledge_file: knowledge/accreditation/ro-dt-2025.pdf
+    note: 'Beschlussstand 2025: HRK 04.11.2025 / KMK 27.11.2025. Die aktualisierte Fassung wurde 2026 oeffentlich
+      bereitgestellt bzw. kommuniziert; die HRK veroeffentlichte hierzu am 26.01.2026 eine Mitteilung.'
+    decision_dates:
+      hrk: '2025-11-04'
+      kmk: '2025-11-27'
+    public_release_year: 2026
+    public_announcement_date: '2026-01-26'
+    official_source: https://www.hrk.de/fileadmin/redaktion/hrk/02-Dokumente/02-07-Internationales/02-07-22_DSH/20260105_RO-DT_Fassung-HRK-v-04-11-2025-und-KMK-v-27-11-2025.pdf
+  - id: accreditation_council_structure_interpretation_2013
+    title: Zur Auslegung der ländergemeinsamen Strukturvorgaben
+    regulatory_level: accreditation_council
+    source_type: interpretation
+    status: inactive
+    version_date: '2013-06-03'
+    default_enabled: false
+    legacy_use: true
+    scope:
+      jurisdiction:
+        country: DE
+      subject_area:
+      - programme_structure
+      - modularisation
+      - workload_and_credits
+      - quality_assurance
+    activation_condition: historical analysis or accreditation procedure governed by pre-2018 law
+    knowledge_file: knowledge/accreditation/legacy/ar-auslegung-strukturvorgaben-2013.pdf
+  - id: accreditation_council_state_specific_rules_2016
+    title: Landesspezifische Strukturvorgaben für die Akkreditierung von Bachelor- und Masterstudiengängen
+    regulatory_level: accreditation_council
+    source_type: interpretation
+    status: inactive
+    version_date: '2016-09-05'
+    default_enabled: false
+    legacy_use: true
+    scope:
+      jurisdiction:
+        country: DE
+      subject_area:
+      - programme_structure
+      - accreditation
+    activation_condition: historical analysis or accreditation procedure governed by pre-2018 law
+    knowledge_file: knowledge/accreditation/legacy/ar-landesspezifische-strukturvorgaben-2016.pdf
+    note: Für aktuelle Prüfungen sind die geltenden Landesrechtsverordnungen maßgeblich.
+  - id: teacher_education_quedlinburg_2005
+    title: Eckpunkte für die gegenseitige Anerkennung von Bachelor- und Masterabschlüssen in Studiengängen, mit
+      denen die Bildungsvoraussetzungen für ein Lehramt vermittelt werden
+    regulatory_level: kmk
+    source_type: resolution
+    status: binding_framework
+    version_date: '2005-06-02'
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        country: DE
+      programme_features:
+      - teacher_education
+      subject_area:
+      - teacher_education
+      - programme_structure
+      - qualification_objectives
+    knowledge_file: knowledge/teacher-education/quedlinburger-beschluss-2005.pdf
+    note: Von der KMK 2024 ausdrücklich weiterhin als Basis der grundständigen Lehrkräftebildung bezeichnet.
+  - id: teacher_education_quedlinburg_application_2007
+    title: Lösung von Anwendungsproblemen beim Quedlinburger Beschluss
+    regulatory_level: kmk
+    source_type: interpretation
+    status: interpretative
+    version_date: '2007-02-28'
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        country: DE
+      programme_features:
+      - teacher_education
+      subject_area:
+      - teacher_education
+      - programme_structure
+    knowledge_file: knowledge/teacher-education/quedlinburger-anwendungsprobleme-2007.pdf
+  - id: teacher_education_educational_sciences
+    title: 'Standards für die Lehrerbildung: Bildungswissenschaften'
+    regulatory_level: kmk
+    source_type: framework
+    status: binding_framework
+    version_date: '2022-10-07'
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        country: DE
+      programme_features:
+      - teacher_education
+      subject_area:
+      - teacher_education
+      - qualification_objectives
+      - learning_outcomes
+    knowledge_file: knowledge/teacher-education/standards-bildungswissenschaften-2022.pdf
+  - id: teacher_education_subject_profiles
+    title: Ländergemeinsame inhaltliche Anforderungen für die Fachwissenschaften und Fachdidaktiken in der Lehrerbildung
+    regulatory_level: kmk
+    source_type: framework
+    status: binding_framework
+    version_date: '2024-02-08'
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        country: DE
+      programme_features:
+      - teacher_education
+      subject_area:
+      - teacher_education
+      - qualification_objectives
+      - learning_outcomes
+    knowledge_file: knowledge/teacher-education/fachprofile-lehrerbildung-2024.pdf
+  - id: esg_2015
+    title: Standards and Guidelines for Quality Assurance in the European Higher Education Area
+    regulatory_level: supranational
+    source_type: guideline
+    status: supplementary
+    version_date: '2015'
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        supranational_area: EHEA
+      subject_area:
+      - quality_assurance
+      - learning_outcomes
+      - programme_structure
+    knowledge_file: knowledge/quality-assurance/esg-2015.pdf
+    note: ESG 2015 sind im Oktober 2026 weiterhin die geltende Fassung. Eine Revision ESG 2027 befindet sich im
+      laufenden Verfahren.
+  - id: european_approach_joint_programmes
+    title: European Approach for Quality Assurance of Joint Programmes
+    regulatory_level: supranational
+    source_type: guideline
+    status: supplementary
+    version_date: 2015-05
+    current_as_of: '2026-10-06'
+    scope:
+      jurisdiction:
+        supranational_area: EHEA
+      programme_features:
+      - joint_programme
+      subject_area:
+      - joint_programmes
+      - quality_assurance
+      - programme_structure
+    activation_requires:
+    - joint_programme scope
+    - national/state legal basis or explicit profile activation
+    knowledge_file: knowledge/joint-programmes/european-approach-2015.pdf
+    note: Im Oktober 2026 weiterhin geltend; eine Revision für die Ministerkonferenz 2027 ist in Arbeit.
+  scope_guards:
+  - id: DE_SCOPE_001_teacher_education
+    rule: Lehrerbildungsbezogene Quellen dürfen nur aktiviert werden, wenn programme_features das Merkmal teacher_education
+      enthält.
+  - id: DE_SCOPE_002_joint_programmes
+    rule: Joint-Programme-spezifische Quellen dürfen nur aktiviert werden, wenn programme_features ein einschlägiges
+      Joint-/Double-/Multiple-Degree-Merkmal enthält.
+  - id: DE_SCOPE_003_language_admission
+    rule: Sprachzugangsbezogene Quellen dürfen nicht zur Bewertung sachfremder Regelungsbereiche herangezogen werden.
+  - id: DE_SCOPE_004_state_specific
+    rule: Landesspezifische Strukturvorgaben dürfen nur zusammen mit einem aktiven Landesprofil und nur für dessen
+      einschlägige Teile verwendet werden.
+  default_trigger_support:
+    workload_credit_relation:
+      supported: true
+    bachelor_structure:
+      supported: true
+    master_structure:
+      supported: true
+    modularisation:
+      supported: true
+    competence_orientation:
+      supported: true
+    assessment_alignment:
+      supported: true
+    study_achievements:
+      supported: true
+    key_competences:
+      supported: true
+      caveat: 'Konkrete Anforderungen an Schlüsselkompetenzen müssen aus einer anwendbaren Regelquelle oder einem
+        Landes-/Institutionsprofil stammen.
+
+        '
+    practical_components:
+      supported: true
+      caveat: 'Konkrete Anforderungen an Praxisanteile müssen durch eine anwendbare Regelquelle oder ein Profil
+        bestimmt werden.
+
+        '
+    teacher_education:
+      supported: true
+    quality_assurance:
+      supported: true
+    joint_programmes:
+      supported: true
+    language_admission:
+      supported: true
+    recognition:
+      supported: true
+    graduation:
+      supported: true
+    documentation_completeness:
+      supported: true
+      caveat: 'Welche Angaben verpflichtend sind, ergibt sich nicht aus diesem Profil allein, sondern aus den jeweils
+        anwendbaren Regelquellen.
+
+        '
+    missing_reference:
+      supported: true
+    programme_structure:
+      supported: true
+    examination_rules:
+      supported: true
+    attendance_requirements:
+      supported: true
+  excluded_from_profile:
+  - Landeshochschulgesetze
+  - Landesakkreditierungsverordnungen
+  - Hochschulsatzungen
+  - Allgemeine Bestimmungen einzelner Hochschulen
+  - hochschulspezifische Prüfungsordnungen
+  - lokale Workload-Faktoren
+  - lokale Pflichtfeldkataloge
+  - lokale Zuständigkeiten
+  - lokale Terminologie
+  - lokale Ansprechpartner
+  architecture_rule: 'Änderungen an Landesrecht oder hochschulspezifischen Regeln dürfen keine Änderung dieses Profils
+    erfordern, sofern sie nicht den bundesweiten oder übergreifenden Regelungsrahmen verändern.
+
+    '
+  programme_features:
+  - teacher_education
+  - joint_programme
+  - joint_degree
+  - double_degree
+  - multiple_degree
+  - continuing_education
+  - dual
+  - part_time
+  - distance_learning
+  - international_programme
+  last_source_audit: '2026-10-06'
+  source_audit_rules:
+    current_law_first: Für aktuelle Akkreditierungsprüfungen haben Staatsvertrag und die geltende Landesrechtsverordnung
+      Vorrang vor Legacy-Beschlüssen des alten Akkreditierungsrechts.
+    legacy_sources: Quellen mit legacy_use=true oder status=inactive werden nur bei historischer Prüfung oder ausdrücklich
+      einschlägigem Altverfahren aktiviert.
+    model_regulation: Die MRVO ist ein gemeinsames Muster; unmittelbare Rechtsverbindlichkeit entsteht durch die
+      jeweilige Landesrechtsverordnung.
+    interpretative_sources: Interpretative Quellen dürfen den aktuellen verbindlichen Normtext erläutern, aber keine
+      neue Pflicht erzeugen.

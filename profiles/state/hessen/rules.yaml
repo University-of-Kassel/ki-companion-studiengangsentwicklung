@@ -1,0 +1,575 @@
+rules:
+  version: '1.2'
+  profile: hessen
+  audited_against:
+  - source: hesshg
+    source_title: Hessisches Hochschulgesetz
+    source_version: bereitgestellte Lesefassung
+  - source: hestakv
+    source_title: Studienakkreditierungsverordnung (StakV)
+    source_version: vom 22.07.2019, zuletzt geändert durch Verordnung vom 15.07.2025
+  - source: hestakv_explanatory
+    source_title: Begründung zur Studienakkreditierungsverordnung
+    source_role: interpretative
+  accreditation_rules:
+  - id: he_accreditation_requirement
+    trigger: quality_assurance
+    rule: 'Studiengänge, die mit einer Hochschulprüfung abschließen, sind zu akkreditieren und zu reakkreditieren.
+      Bei neuen Studiengängen erfolgt die Akkreditierung grundsätzlich vor Aufnahme des Studienbetriebs.
+
+      '
+    source: hesshg
+    citation: § 14 Abs. 2
+    status: binding
+    exceptions:
+    - Ausnahme mit Zustimmung des Hochschulrats
+    - Einzelakkreditierung entfällt bei akkreditiertem Qualitätssicherungssystem
+  - id: he_accreditation_scope
+    trigger: quality_assurance
+    rule: 'Die Akkreditierung prüft formale sowie fachliche und überfachliche Kriterien unter Berücksichtigung der
+      gesetzlichen Ziele des Studiums.
+
+      '
+    source: hesshg
+    citation: § 14 Abs. 2
+    status: binding
+  - id: he_programme_monitoring
+    trigger: quality_assurance
+    rule: 'Der Studiengang unterliegt unter Beteiligung von Studierenden sowie Absolventinnen und Absolventen einem
+      kontinuierlichen Monitoring. Daraus sind Maßnahmen zur Sicherung des Studienerfolgs abzuleiten, fortlaufend
+      zu überprüfen und für die Weiterentwicklung zu nutzen.
+
+      '
+    source: hestakv
+    citation: § 14
+    status: binding
+  qualification_objective_rules:
+  - id: he_statutory_study_goals
+    trigger: competence_orientation
+    rule: 'Studium und Lehre vermitteln wissenschaftlich-kritisches Denken bzw. künstlerische Fähigkeiten, bereiten
+      auf berufliche Tätigkeitsfelder vor, befähigen zu wissenschaftlicher bzw. künstlerischer Arbeit und fördern
+      verantwortliches Handeln im demokratischen und sozialen Rechtsstaat, gesellschaftliches Engagement, Bildung
+      für nachhaltige Entwicklung und Persönlichkeitsentwicklung.
+
+      '
+    source: hesshg
+    citation: § 15 Abs. 1
+    status: binding
+  - id: he_qualification_goals_public
+    trigger: competence_orientation
+    rule: 'Qualifikationsziele und angestrebte Lernergebnisse müssen klar formuliert und öffentlich zugänglich sein.
+
+      '
+    source: hestakv
+    citation: § 11 Abs. 1
+    status: binding
+  - id: he_qualification_goal_dimensions
+    trigger: competence_orientation
+    rule: 'Die Qualifikationsziele berücksichtigen nachvollziehbar die Ziele der Hochschulbildung einschließlich
+      Persönlichkeitsbildung sowie zivilgesellschaftlicher, politischer und kultureller Rollen.
+
+      '
+    source: hestakv
+    citation: § 11 Abs. 1
+    status: binding
+  - id: he_degree_level_competences
+    trigger: competence_orientation
+    rule: 'Fachliche und wissenschaftliche bzw. künstlerische Anforderungen umfassen Wissen und Verstehen, Einsatz/Anwendung/Erzeugung
+      von Wissen oder Kunst, Kommunikation und Kooperation sowie wissenschaftliches bzw. künstlerisches Selbstverständnis
+      und Professionalität und müssen zum Abschlussniveau passen.
+
+      '
+    source: hestakv
+    citation: § 11 Abs. 2
+    status: binding
+  programme_structure_rules:
+  - id: he_bachelor_master_sequence
+    trigger:
+    - bachelor_structure
+    - master_structure
+    rule: 'Im gestuften System ist der Bachelor der erste berufsqualifizierende Regelabschluss; der Master ist ein
+      weiterer berufsqualifizierender Hochschulabschluss.
+
+      '
+    source: hestakv
+    citation: § 3 Abs. 1
+    status: binding
+  - id: he_standard_period_bachelor
+    trigger: bachelor_structure
+    rule: 'Die Regelstudienzeit eines Bachelorstudiengangs im Vollzeitstudium beträgt grundsätzlich sechs, sieben
+      oder acht Semester und mindestens drei Jahre.
+
+      '
+    source: hestakv
+    citation: § 3 Abs. 2
+    status: binding
+    deviation_possible: true
+    deviation_basis: 'Ausnahmsweise bei entsprechender studienorganisatorischer Gestaltung, insbesondere für individuelle
+      Lernbiografien.
+
+      '
+  - id: he_standard_period_master
+    trigger: master_structure
+    rule: 'Die Regelstudienzeit eines Masterstudiengangs im Vollzeitstudium beträgt grundsätzlich zwei, drei oder
+      vier Semester.
+
+      '
+    source: hestakv
+    citation: § 3 Abs. 2
+    status: binding
+    deviation_possible: true
+  - id: he_consecutive_total_duration
+    trigger:
+    - bachelor_structure
+    - master_structure
+    rule: 'Bei konsekutiven Studiengängen beträgt die Gesamtregelstudienzeit im Vollzeitstudium grundsätzlich fünf
+      Jahre bzw. zehn Semester.
+
+      '
+    source: hestakv
+    citation: § 3 Abs. 2
+    status: binding
+    exceptions:
+    - begründete studienorganisatorische Ausnahmen
+    - 'künstlerische Kernfächer an Kunst- und Musikhochschulen: bis sechs Jahre'
+  - id: he_rule_study_time_in_regulations
+    trigger: documentation_completeness
+    rule: 'Prüfungsordnungen müssen die Regelstudienzeit vorsehen.
+
+      '
+    source: hesshg
+    citation: § 24 Abs. 1 sowie § 25 Abs. 2 Nr. 5
+    status: binding
+  modularisation_rules:
+  - id: he_modularisation_required
+    trigger: modularisation
+    rule: 'Studiengänge sind grundsätzlich in Module zu gliedern. Module bündeln angestrebte Lernergebnisse und
+      Studieninhalte thematisch und zeitlich.
+
+      '
+    source: hestakv
+    citation: § 7 Abs. 1
+    status: binding
+  - id: he_module_duration
+    trigger: modularisation
+    rule: 'Lernergebnisse und Studieninhalte eines Moduls sollen so bemessen sein, dass sie in der Regel innerhalb
+      von maximal zwei aufeinanderfolgenden Semestern vermittelt werden können.
+
+      '
+    source: hestakv
+    citation: § 7 Abs. 1
+    status: binding_framework
+    comply_or_explain: true
+    deviation_possible_if:
+    - besonders begründeter Ausnahmefall
+  - id: he_module_description_minimum
+    trigger: documentation_completeness
+    rule: 'Eine Modulbeschreibung soll mindestens die in § 7 Abs. 2 StakV genannten Angaben enthalten.
+
+      '
+    source: hestakv
+    citation: § 7 Abs. 2 und 3
+    status: binding_framework
+    comply_or_explain: true
+    required_fields:
+    - angestrebte Lernergebnisse und Studieninhalte
+    - Lehr- und Lernformen
+    - Voraussetzungen für die Teilnahme
+    - Voraussetzungen für die Vergabe von ECTS-Leistungspunkten
+    - ECTS-Leistungspunkte und Benotung
+    - Häufigkeit des Angebots
+    - Arbeitsaufwand
+    - Dauer des Moduls
+    additional_detail:
+      participation_requirements: 'Kenntnisse, Fähigkeiten und Fertigkeiten für eine erfolgreiche Teilnahme sowie
+        Hinweise zur geeigneten Vorbereitung.
+
+        '
+      credit_award_requirements: 'Prüfungsarten sowie Prüfungsumfang oder -dauer sind anzugeben.
+
+        '
+  quantitative_rules:
+  - id: he_credits_per_semester
+    trigger:
+    - bachelor_structure
+    - master_structure
+    parameter: credits_per_semester
+    default_value: 30
+    qualifier: in_der_regel
+    source: hestakv
+    citation: § 8 Abs. 1
+    status: binding_framework
+    comply_or_explain: true
+  - id: he_hours_per_credit
+    trigger: workload_credit_relation
+    parameter: hours_per_credit
+    allowed_range:
+      min: 25
+      max: 30
+    source: hestakv
+    citation: § 8 Abs. 1
+    status: binding
+  - id: he_bachelor_minimum_credits
+    trigger: bachelor_structure
+    parameter: minimum_bachelor_credits
+    value: 180
+    source: hestakv
+    citation: § 8 Abs. 2
+    status: binding
+  - id: he_master_total_credits
+    trigger: master_structure
+    parameter: total_credits_including_first_degree
+    value: 300
+    source: hestakv
+    citation: § 8 Abs. 2
+    status: binding
+    deviation_possible: true
+    deviation_basis: entsprechende Qualifikation im Einzelfall
+  - id: he_bachelor_thesis_credits
+    trigger: graduation
+    parameter: bachelor_thesis_credits
+    allowed_range:
+      min: 6
+      max: 12
+    source: hestakv
+    citation: § 8 Abs. 3
+    status: binding
+    exceptions:
+      free_arts:
+        max: 20
+        condition: begründeter Ausnahmefall
+  - id: he_master_thesis_credits
+    trigger: graduation
+    parameter: master_thesis_credits
+    allowed_range:
+      min: 15
+      max: 30
+    source: hestakv
+    citation: § 8 Abs. 3
+    status: binding
+    exceptions:
+      free_arts:
+        max: 40
+        condition: begründeter Ausnahmefall
+  degree_rules:
+  - id: he_thesis_required
+    trigger: graduation
+    rule: 'Bachelor- und Masterstudiengänge sehen jeweils eine Abschlussarbeit vor.
+
+      '
+    source: hestakv
+    citation: § 4 Abs. 3
+    status: binding
+  - id: he_master_first_degree
+    trigger: master_structure
+    rule: 'Zugangsvoraussetzung für einen Masterstudiengang ist grundsätzlich ein erster berufsqualifizierender
+      Hochschulabschluss.
+
+      '
+    source: hestakv
+    citation: § 5 Abs. 1
+    status: binding
+  - id: he_continuing_master_experience
+    trigger: master_structure
+    applies_if:
+      programme_type: master
+      programme_features:
+      - continuing_education
+    rule: 'Weiterbildende Masterstudiengänge setzen grundsätzlich qualifizierte berufspraktische Erfahrung von nicht
+      unter einem Jahr voraus.
+
+      '
+    source: hestakv
+    citation: § 5 Abs. 1
+    status: binding
+    deviation_possible: true
+    deviation_basis: begründeter Ausnahmefall für einzelne Studierende
+  - id: he_degree_designations
+    trigger: graduation
+    rule: 'Die Abschlussbezeichnung muss den in § 6 Abs. 2 StakV vorgesehenen Fächergruppen und Abschlussarten entsprechen;
+      fachliche Zusätze und gemischtsprachige Abschlussbezeichnungen sind ausgeschlossen.
+
+      '
+    source: hestakv
+    citation: § 6 Abs. 2
+    status: binding
+  - id: he_diploma_supplement
+    trigger: graduation
+    rule: 'Das Diploma Supplement ist Bestandteil jedes Abschlusszeugnisses.
+
+      '
+    source: hestakv
+    citation: § 6 Abs. 4
+    status: binding
+  curriculum_rules:
+  - id: he_curriculum_alignment
+    trigger: competence_orientation
+    rule: 'Das Curriculum muss unter Berücksichtigung der Eingangsqualifikation im Hinblick auf die Erreichbarkeit
+      der Qualifikationsziele adäquat aufgebaut sein. Qualifikationsziele, Studiengangsbezeichnung, Abschlussgrad/-bezeichnung
+      und Modulkonzept müssen stimmig aufeinander bezogen sein.
+
+      '
+    source: hestakv
+    citation: § 12 Abs. 1
+    status: binding
+  - id: he_documentation_publication
+    trigger: documentation_completeness
+    rule: 'Studiengang, Studienverlauf, Prüfungsanforderungen, Modulbeschreibungen und Zugangsvoraussetzungen einschließlich
+      Nachteilsausgleichsregelungen müssen dokumentiert und veröffentlicht sein.
+
+      '
+    source: hestakv
+    citation: § 12 Abs. 1
+    status: binding
+  - id: he_assessment_alignment
+    trigger: assessment_alignment
+    rule: 'Prüfungen und Prüfungsarten müssen eine aussagekräftige Überprüfung der erreichten Lernergebnisse ermöglichen
+      und modulbezogen sowie kompetenzorientiert ausgestaltet sein.
+
+      '
+    source: hestakv
+    citation: § 12 Abs. 4
+    status: binding
+  - id: he_studyability
+    trigger:
+    - bachelor_structure
+    - master_structure
+    rule: 'Die Studierbarkeit in der Regelstudienzeit muss gewährleistet sein.
+
+      '
+    source: hestakv
+    citation: § 12 Abs. 5
+    status: binding
+    dimensions:
+    - planbarer und verlässlicher Studienbetrieb
+    - weitgehende Überschneidungsfreiheit von Lehrveranstaltungen und Prüfungen
+    - plausibler und prüfungsbelastungsangemessener durchschnittlicher Arbeitsaufwand
+    - adäquate und belastungsangemessene Prüfungsdichte und -organisation
+  - id: he_exam_concept_required
+    trigger: assessment_alignment
+    rule: 'Prüfungsdichte und -organisation müssen in einem Prüfungskonzept stimmig begründet werden; ihre Belastungsangemessenheit
+      ist regelmäßig unter Einbezug von Studierenden zu bewerten.
+
+      '
+    source: hestakv
+    citation: § 12 Abs. 5 Nr. 4
+    status: binding
+  - id: he_module_minimum_size
+    trigger: modularisation
+    parameter: minimum_module_credits
+    value: 5
+    qualifier: soll
+    source: hestakv
+    citation: § 12 Abs. 5 Nr. 4
+    status: binding_framework
+    comply_or_explain: true
+  examination_regulation_rules:
+  - id: he_examination_regulations_required
+    trigger: documentation_completeness
+    rule: 'Hochschulprüfungen werden auf Grundlage von Prüfungsordnungen abgelegt, die als Satzungen erlassen und
+      vom Präsidium genehmigt werden.
+
+      '
+    source: hesshg
+    citation: § 25 Abs. 1
+    status: binding
+  - id: he_examination_regulation_contents
+    trigger: documentation_completeness
+    rule: 'Studien- und Prüfungsordnungen müssen die in § 25 Abs. 2 HessHG genannten Gegenstände regeln.
+
+      '
+    source: hesshg
+    citation: § 25 Abs. 2
+    status: binding
+    required_topics:
+    - Ziel, Inhalt und Aufbau des Studiums sowie Hochschulgrad
+    - Qualifikationsziel, Teilnahmevoraussetzungen und Arbeitsbelastung der Module
+    - Bildung und Zusammensetzung der Prüfungsgremien
+    - Prüfungsrücktritt und Nachteilsausgleich
+    - Regelstudienzeit
+    - Praktika, besondere Kenntnisse und Fähigkeiten
+    - Prüfungsfristen, Bearbeitungszeiten, Umfang und Dauer
+    - Zulassung zu Prüfungen und Wiederholung
+    - Freiversuche, soweit vorgesehen
+    - Anerkennung und Anrechnung
+    - Prüfungsfächer, Gewichtung und Prüfungsformen
+    - Bewertungsgrundsätze und Mitteilungsfristen
+    - Folgen von Verstößen
+    - Einsicht in Prüfungsunterlagen
+    - besondere Masterzugangsvoraussetzungen
+  - id: he_disability_compensation
+    trigger: documentation_completeness
+    rule: 'Prüfungsordnungen müssen Regelungen zum Nachteilsausgleich bei Behinderung, chronischer oder schwerer
+      Erkrankung sowie zur Berücksichtigung von Mutterschutz, Elternzeit, Erkrankungen betreuungsbedürftiger Kinder
+      und pflegebedürftiger Angehöriger enthalten.
+
+      '
+    source: hesshg
+    citation: § 25 Abs. 3
+    status: binding
+  recognition_rules:
+  - id: he_recognition_no_substantial_difference
+    trigger: recognition
+    rule: 'Hochschulisch erbrachte Studien- und Prüfungsleistungen werden anerkannt, wenn kein wesentlicher Unterschied
+      gegenüber den zu ersetzenden Leistungen besteht.
+
+      '
+    source: hesshg
+    citation: § 22 Abs. 5
+    status: binding
+    burden_of_proof: zuständige Stelle
+  - id: he_non_higher_education_credit
+    trigger: recognition
+    rule: 'Außerhalb von Hochschulen erworbene Kenntnisse und Fähigkeiten können bei Gleichwertigkeit angerechnet
+      werden; insgesamt dürfen dadurch nicht mehr als 50 Prozent der erforderlichen Prüfungsleistungen ersetzt werden.
+
+      '
+    source: hesshg
+    citation: § 22 Abs. 6
+    status: binding
+  teacher_education_rules:
+  - id: he_teacher_education_basis
+    trigger: teacher_education
+    rule: 'Für Studiengänge, in denen Bildungsvoraussetzungen für ein Lehramt vermittelt werden, sind ländergemeinsame
+      und länderspezifische fachliche sowie strukturelle Anforderungen Grundlage der Akkreditierung.
+
+      '
+    source: hestakv
+    citation: § 13 Abs. 2
+    status: binding
+  - id: he_teacher_education_structure
+    trigger: teacher_education
+    rule: 'Im Rahmen der Akkreditierung sind insbesondere die in § 13 Abs. 3 StakV genannten Strukturmerkmale zu
+      prüfen.
+
+      '
+    source: hestakv
+    citation: § 13 Abs. 3
+    status: binding
+    criteria:
+    - integratives Studium von mindestens zwei Fachwissenschaften und Bildungswissenschaften in Bachelor- und Masterphase
+    - schulpraktische Studien bereits während des Bachelorstudiums
+    - Differenzierung von Studium und Abschlüssen nach Lehrämtern
+    exceptions:
+    - Kunst und Musik
+    - Lehramt an beruflichen Schulen
+    - Quereinstiegs-Master für das Lehramt an beruflichen Schulen
+  cooperation_rules:
+  - id: he_non_higher_education_cooperation
+    trigger: joint_programmes
+    applies_if:
+      cooperation_type: non_higher_education
+    rule: 'Bei Kooperationen mit nichthochschulischen Einrichtungen bleiben zentrale akademische Entscheidungen
+      bei der gradverleihenden Hochschule und dürfen nicht delegiert werden.
+
+      '
+    source: hestakv
+    citation: § 19
+    status: binding
+  - id: he_higher_education_cooperation
+    trigger: joint_programmes
+    applies_if:
+      cooperation_type: higher_education
+    rule: 'Bei studiengangsbezogenen Hochschulkooperationen gewährleisten die gradverleihenden Hochschulen Umsetzung
+      und Qualität des Studiengangskonzepts; Art, Umfang und Vereinbarungen der Kooperation müssen dokumentiert
+      sein.
+
+      '
+    source: hestakv
+    citation: § 20 Abs. 1
+    status: binding
+  - id: he_joint_programme_definition
+    trigger: joint_programmes
+    rule: 'Ein Joint Programme im Sinne der StakV setzt ein integriertes Curriculum, einen Studienanteil an ausländischen
+      Hochschulen von in der Regel mindestens 25 Prozent, vertragliche Zusammenarbeit, abgestimmtes Zugangs- und
+      Prüfungswesen und gemeinsame Qualitätssicherung voraus.
+
+      '
+    source: hestakv
+    citation: § 10 Abs. 1
+    status: binding
+  system_accreditation_rules:
+  - id: he_qm_system_governance
+    trigger: quality_assurance
+    applies_if:
+      accreditation_type: system
+    rule: 'Das Qualitätsmanagementsystem muss die systematische Umsetzung der Kriterien aus Teil 2 und 3 gewährleisten
+      und veröffentlichte Entscheidungsprozesse, Zuständigkeiten und Verantwortlichkeiten für Einrichtung, Überprüfung,
+      Weiterentwicklung, Einstellung und interne Akkreditierung von Studiengängen enthalten.
+
+      '
+    source: hestakv
+    citation: § 17 Abs. 1
+    status: binding
+  - id: he_qm_system_independence
+    trigger: quality_assurance
+    applies_if:
+      accreditation_type: system
+    rule: 'Das Qualitätsmanagementsystem muss unabhängige Qualitätsbewertungen, Verfahren zum Umgang mit internen
+      Konflikten und ein internes Beschwerdesystem sicherstellen und auf geschlossenen Regelkreisen beruhen.
+
+      '
+    source: hestakv
+    citation: § 17 Abs. 2
+    status: binding
+  - id: he_qm_external_participation
+    trigger: quality_assurance
+    applies_if:
+      accreditation_type: system
+    rule: 'Studiengänge und relevante Leistungsbereiche sind regelmäßig unter Beteiligung interner und externer
+      Akteure zu bewerten; bei Handlungsbedarf sind Maßnahmen zu ergreifen und umzusetzen.
+
+      '
+    source: hestakv
+    citation: § 18 Abs. 1
+    status: binding
+  interpretative_rules:
+  - id: he_explanatory_module_duration
+    source: hestakv_explanatory
+    citation: Begründung zu § 7
+    status: interpretative
+    rule: 'Die zeitliche Begrenzung von Modulen dient insbesondere transparenter Binnenstrukturierung und Mobilität.
+      Bei Abweichungen ist darzulegen, dass keine nachteiligen Effekte entstehen oder diese ausgeglichen werden.
+
+      '
+  - id: he_explanatory_exam_density
+    source: hestakv_explanatory
+    citation: Begründung zu § 12 Abs. 5
+    status: interpretative
+    rule: 'Die Begründung erläutert das Ziel einer angemessenen Prüfungsbelastung und nennt als Orientierung in
+      der Regel eine Prüfung je Modul.
+
+      '
+    restriction: 'Diese Erläuterung darf nicht als eigenständige verbindliche Prüfungsobergrenze behandelt werden,
+      soweit der aktuelle Wortlaut der StakV eine solche konkrete Vorgabe nicht enthält.
+
+      '
+  validation:
+  - id: HE_VAL_001
+    description: 'Die Begründung darf keine zusätzliche verbindliche Pflicht erzeugen, die sich im aktuellen Verordnungstext
+      nicht mehr findet.
+
+      '
+    action_on_violation: downgrade_to_interpretative
+  - id: HE_VAL_002
+    description: 'Soll-Regeln und Regel-Ausnahmen sind als Comply-or-Explain zu behandeln, wenn die jeweilige Norm
+      begründete Abweichungen zulässt.
+
+      '
+    action_on_violation: reclassify_rule
+  - id: HE_VAL_003
+    description: 'Hochschulspezifische Konkretisierungen, insbesondere lokale Modulhandbuchfelder oder lokale Workload-Festlegungen,
+      nicht in dieses Profil aufnehmen.
+
+      '
+    action_on_violation: move_to_institution_profile
+  - id: HE_VAL_004
+    description: 'Joint-Programme-, Lehramts- und Systemakkreditierungsregeln nur bei passendem Scope aktivieren.
+
+      '
+    action_on_violation: block_trigger
+  - id: HE_VAL_005
+    description: 'Bei quantitativen Regeln stets ausdrücklich vorgesehene Ausnahmen und Sonderfälle berücksichtigen.
+
+      '
+    action_on_violation: reassess_quantitative_rule

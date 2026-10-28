@@ -1,0 +1,8 @@
+test_case:
+  id: "teacher_education_scope_guard_demo"
+  description: >
+    Lehramts-Trigger darf bei einem regulären Bachelor ohne
+    Lehrerbildungsmerkmal nicht feuern.
+  context:
+    programme_type: "bachelor"
+    programme_features: []

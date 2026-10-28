@@ -1,0 +1,90 @@
+programme_feature:
+  id: university-kassel-nachhaltigkeitsstudien
+  version: '1.0'
+  feature_key: sustainability_studies
+  name: Nachhaltigkeitsstudien / Integrierte Nachhaltigkeitsstudien
+  institution: university-kassel
+  inherits:
+  - profiles/institution/university-kassel
+  description: Optionale institutionelle Regelschicht für Studiengänge, die das Bachelor-Nebenfach Nachhaltigkeitsstudien,
+    Integrierte Nachhaltigkeitsstudien A/B oder einen Nachhaltigkeitsstudien-Schwerpunkt nach AB NaS verwenden.
+  source:
+    id: ab_nas_2024
+    title: Allgemeine Bestimmungen für das Bachelor-Nebenfach Nachhaltigkeitsstudien und die Integrierten Nachhaltigkeitsstudien
+      der Universität Kassel
+    date: '2024-12-11'
+    publication: Mitteilungsblatt der Universität Kassel Nr. 4/2025 vom 28.03.2025
+    regulatory_level: institution
+    source_type: statute
+    status: binding
+    knowledge_file: knowledge/ab-nas-2024.pdf
+    relation_to_parent_source:
+      source: ab_bama
+      type: supplements
+      citation: § 1 AB NaS
+  scope:
+    institution: university-kassel
+    object_type:
+    - examination_regulation
+    - module_handbook
+    - study_and_examination_plan
+    - programme_concept
+    - curriculum
+    programme_features:
+    - sustainability_studies
+  feature_parameters:
+    integration_mode:
+      required: true
+      allowed:
+      - minor
+      - inas_a
+      - inas_b
+      - elective_focus
+      unknown_policy: UNCLEAR
+  integration_modes:
+    minor:
+      label: Bachelor-Nebenfach Nachhaltigkeitsstudien
+      basis: § 2 Abs. 1 i. V. m. § 7 AB NaS
+      programme_type:
+      - bachelor
+      total_credits: 40
+    inas_a:
+      label: Integrierte Nachhaltigkeitsstudien A
+      basis: § 2 Abs. 2 i. V. m. § 8 Abs. 1 AB NaS
+      programme_type:
+      - bachelor
+      total_credits: 60
+    inas_b:
+      label: Integrierte Nachhaltigkeitsstudien B
+      basis: § 2 Abs. 2 i. V. m. § 8 Abs. 2 AB NaS
+      programme_type:
+      - bachelor
+      total_credits: 30
+    elective_focus:
+      label: Nachhaltigkeitsstudien-Schwerpunkt im Wahlbereich
+      basis: § 2 Abs. 3 AB NaS
+      programme_type:
+      - bachelor
+      - master
+      total_credits: 18
+      activation_requirement: Explizite Einbindung in der Fachprüfungsordnung des Studiengangs.
+  activation:
+    safe_auto_activation_if:
+    - document_contains: Integrierte Nachhaltigkeitsstudien A
+      set_mode: inas_a
+    - document_contains: Integrierte Nachhaltigkeitsstudien B
+      set_mode: inas_b
+    - document_contains: Bachelor-Nebenfach Nachhaltigkeitsstudien
+      set_mode: minor
+    conditional_activation_if:
+    - document_contains: Nachhaltigkeitsstudien-Schwerpunkt
+      set_mode: elective_focus
+      only_if: Fachprüfungsordnung bindet den Schwerpunkt ausdrücklich als Wahlbereich nach AB NaS ein.
+    do_not_activate_from:
+    - bloßer Studiengangsname mit dem Wort Nachhaltigkeit
+    - einzelnes Nachhaltigkeitsmodul ohne Verweis auf die AB NaS
+    - thematische Nähe ohne normative Einbindung
+  architecture:
+    feature_rules_must_not_be_global: true
+    feature_source_is_norm_only_when_feature_applies: true
+    parent_institution_rules_remain_active: true

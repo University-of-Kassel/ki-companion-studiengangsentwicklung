@@ -1,0 +1,5 @@
+expected_result:
+  test_case: "teacher_education_scope_guard_demo"
+  trigger:
+    id: "teacher_education"
+    status: "blocked"

@@ -1,0 +1,38 @@
+profile:
+  id: "example-university"
+  version: "1.0"
+  name: "Example University"
+  description: >
+    Rein fiktives Institutionsprofil zur Demonstration der Studiengang-CompAIgnon-Architektur.
+    Alle Werte und Regeln dienen ausschließlich als Beispiel.
+
+  demo_only: true
+
+  institution:
+    id: "example-university"
+    name: "Example University"
+    type: "university"
+
+  jurisdiction:
+    country_code: "DE"
+    state_code: "EX"
+
+  inherits:
+    - "regulatory/de"
+    - "example-state"
+
+  sources:
+    - id: "example_general_regulations"
+      title: "General Regulations for Degree Programmes"
+      regulatory_level: "institution"
+      source_type: "statute"
+      status: "binding"
+      demo_only: true
+      scope:
+        institution: "example-university"
+        subject_area:
+          - programme_structure
+          - modularisation
+          - workload_and_credits
+          - examinations
+      knowledge_file: "knowledge/example-general-regulations.txt"

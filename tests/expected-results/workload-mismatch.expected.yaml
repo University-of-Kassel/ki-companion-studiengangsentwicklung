@@ -1,0 +1,12 @@
+expected_result:
+  test_case: "workload_mismatch_demo"
+  trigger:
+    id: "workload_credit_relation"
+    status: "allowed"
+  conflict_pattern:
+    id: "CL_001_workload_credit_mismatch"
+  status: "ABWEICHUNG"
+  note: >
+    Das fiktive Example-University-Profil definiert 25 Stunden pro Credit.
+    Bei 5 Credits wären 125 Stunden zu erwarten; 200 Stunden sind daher
+    inkonsistent.

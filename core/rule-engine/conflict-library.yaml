@@ -1,0 +1,548 @@
+conflict_library:
+  version: '2.1'
+  purpose: 'Generische Bibliothek wiederkehrender Konflikt- und Fehlermuster bei der Prüfung von Studiengangdokumenten.
+    Die Bibliothek enthält keine konkreten Rechtsquellen, keine institutionellen Normanker und keine lokalen Schwellenwerte.
+
+    '
+  principle: 'Ein Konfliktmuster beschreibt, wie ein möglicher Problemfall erkannt und klassifiziert werden kann.
+    Ob daraus tatsächlich eine Normabweichung folgt, entscheidet erst die Verbindung mit den aktiven Regelquellen
+    über norm-logic.yaml und scope-matcher.yaml.
+
+    '
+  severity_scale:
+    allowed:
+    - low
+    - medium
+    - high
+    - critical
+    - context_dependent
+    rule: 'Der in einem Muster angegebene Schweregrad ist nur ein Default. Der tatsächliche Schweregrad muss anhand
+      des anwendbaren Regelwerks, der Reichweite des Problems und seiner Auswirkungen bestimmt werden.
+
+      '
+  status_mapping:
+    documentation_gap: context_dependent
+    regulatory_gap: UNKLAR
+    inconsistency: context_dependent
+    normative_deviation: ABWEICHUNG
+    plausibility_issue: HINWEIS
+    missing_reference: NICHT PRÜFBAR
+    scope_error: ABWEICHUNG
+    positive: KONFORM
+  conflict_patterns:
+  - id: CL_001_workload_credit_mismatch
+    name: Inkohärenz zwischen Workload und Leistungspunkten
+    category: inconsistency
+    default_severity: high
+    triggers:
+    - workload_credit_relation
+    detects:
+    - Workload und Leistungspunkte sind beide angegeben, aber rechnerisch oder normativ nicht kohärent.
+    - Die angegebene Relation widerspricht dem aktiven quantitativen Prüfmaßstab.
+    required_evidence:
+    - workload
+    - credits
+    normative_requirement: true
+    finding_template: 'Workload und Leistungspunkte sind nicht konsistent bzw. anhand der vorliegenden Angaben nicht
+      widerspruchsfrei nachvollziehbar.
+
+      '
+    issue_template: 'Die dokumentierte Relation weicht vom anwendbaren Prüfmaßstab ab.
+
+      '
+    recommendation_template: 'Workload und Leistungspunkte so anpassen oder dokumentieren, dass die Relation mit
+      dem aktiven Prüfmaßstab nachvollziehbar übereinstimmt.
+
+      '
+    if_normative_basis_missing:
+      status: NICHT PRÜFBAR
+      issue_template: 'Eine belastbare Bewertung der Workload-Leistungspunkt-Relation ist mangels anwendbarem Prüfmaßstab
+        nicht möglich.
+
+        '
+  - id: CL_002_missing_required_field
+    name: Fehlende Pflichtangabe
+    category: documentation_gap
+    default_severity: context_dependent
+    triggers:
+    - documentation_completeness
+    detects:
+    - Ein durch das aktive Regelwerk als erforderlich definiertes Feld fehlt.
+    - Eine Pflichtangabe ist leer oder nicht auffindbar.
+    required_evidence:
+    - active_required_field_definition
+    normative_requirement: true
+    finding_template: 'Eine nach dem aktiven Regelwerk erforderliche Angabe ist nicht vorhanden oder nicht auffindbar.
+
+      '
+    issue_template: 'Die Dokumentation ist hinsichtlich der erforderlichen Angabe unvollständig.
+
+      '
+    recommendation_template: 'Die fehlende Angabe ergänzen und eindeutig dem betreffenden Prüfgegenstand zuordnen.
+
+      '
+    result_logic:
+      binding_required_field_and_absent: ABWEICHUNG
+      requirement_unclear_or_only_recommended: UNKLAR_OR_HINWEIS
+      cannot_determine_whether_field_is_absent: NICHT PRÜFBAR
+  - id: CL_003_exam_and_study_achievement_mixed
+    name: Unklare Abgrenzung von Prüfungs- und Studienleistungen
+    category: inconsistency
+    default_severity: high
+    triggers:
+    - assessment_alignment
+    - study_achievements
+    detects:
+    - Begriffe für Prüfungs- und Studienleistungen werden synonym oder widersprüchlich verwendet.
+    - Die Bewertungs- oder Rechtsfolgen der Leistungsarten sind nicht klar getrennt.
+    required_evidence:
+    - assessment
+    - study_achievement
+    normative_requirement: true
+    finding_template: 'Prüfungs- und Studienleistungen sind nicht trennscharf dokumentiert.
+
+      '
+    issue_template: 'Die Leistungsarten und ihre jeweilige Funktion sind nicht eindeutig voneinander abgegrenzt.
+
+      '
+    recommendation_template: 'Prüfungs- und Studienleistungen eindeutig benennen, voneinander abgrenzen und ihre
+      jeweilige Funktion transparent dokumentieren.
+
+      '
+  - id: CL_004_overuse_of_study_achievements
+    name: Auffällige Häufung von Studienleistungen
+    category: plausibility_issue
+    default_severity: medium
+    triggers:
+    - study_achievements
+    detects:
+    - Studienleistungen treten in ungewöhnlich vielen Modulen auf.
+    - Es entsteht der Eindruck einer systematischen Verlagerung von Prüfungsanforderungen.
+    required_evidence:
+    - study_achievement_distribution
+    normative_requirement: false
+    finding_template: 'Studienleistungen treten in auffälliger Häufung auf.
+
+      '
+    issue_template: 'Ein verbindlicher Mangel ist allein aus der Häufung nicht ableitbar; es besteht jedoch ein
+      Transparenz- bzw. Prüfungskonzept-Risiko.
+
+      '
+    recommendation_template: 'Die Funktion der Studienleistungen im Prüfungskonzept prüfen und gegebenenfalls ihre
+      Notwendigkeit und Abgrenzung nachvollziehbar erläutern.
+
+      '
+    output_default: HINWEIS
+  - id: CL_005_exam_competence_misalignment
+    name: Prüfungsform und Kompetenzziel nicht nachvollziehbar ausgerichtet
+    category: inconsistency
+    default_severity: medium
+    triggers:
+    - assessment_alignment
+    - competence_orientation
+    detects:
+    - Dokumentierte Kompetenzziele und Prüfungsform weisen keinen nachvollziehbaren Zusammenhang auf.
+    - Die Prüfungsform erscheint für zentrale Kompetenzziele offensichtlich ungeeignet.
+    required_evidence:
+    - learning_outcomes
+    - assessment_type
+    normative_requirement: false
+    finding_template: 'Die Abbildung der dokumentierten Kompetenzziele durch die Prüfungsform ist nicht oder nur
+      eingeschränkt nachvollziehbar.
+
+      '
+    issue_template: 'Es besteht eine Inkohärenz im Prüfungskonzept.
+
+      '
+    recommendation_template: 'Prüfungsform und Kompetenzziele aufeinander abstimmen oder den Zusammenhang nachvollziehbar
+      dokumentieren.
+
+      '
+    caution: 'Keine Abweichung allein aus einer schematischen Zuordnung von Prüfungsform zu Kompetenztyp ableiten.
+
+      '
+  - id: CL_006_semester_credit_distribution
+    name: Auffällige Verteilung von Leistungspunkten im Studienverlauf
+    category: plausibility_issue
+    default_severity: medium
+    triggers:
+    - bachelor_structure
+    - master_structure
+    detects:
+    - Semesterumfänge weichen auffällig vom aktiven Strukturmaßstab ab.
+    - Die Verteilung der Leistungspunkte erscheint ohne Begründung ungleichmäßig.
+    required_evidence:
+    - semester_credit_distribution
+    normative_requirement: true
+    finding_template: 'Die Verteilung der Leistungspunkte im Studienverlauf weicht vom aktiven Strukturmaßstab ab
+      bzw. ist auffällig ungleichmäßig.
+
+      '
+    issue_template: 'Die Studierbarkeit oder strukturelle Kohärenz ist nicht hinreichend nachvollziehbar.
+
+      '
+    recommendation_template: 'Die Verteilung überprüfen, anpassen oder eine nachvollziehbare Begründung für die
+      Abweichung dokumentieren.
+
+      '
+  - id: CL_007_module_data_conflict
+    name: Widersprüchliche Modulangaben zwischen Dokumenten
+    category: inconsistency
+    default_severity: high
+    triggers:
+    - modularisation
+    - documentation_completeness
+    detects:
+    - Modulnummern, Modulnamen, Credits, Prüfungsformen oder Voraussetzungen unterscheiden sich zwischen Dokumenten.
+    required_evidence:
+    - cross_document_module_data
+    normative_requirement: false
+    finding_template: 'Angaben zum selben Modul widersprechen sich zwischen den vorliegenden Dokumenten.
+
+      '
+    issue_template: 'Der maßgebliche Regelungsstand ist nicht eindeutig bestimmbar.
+
+      '
+    recommendation_template: 'Die betroffenen Dokumente harmonisieren und einen eindeutigen, konsistenten Stand
+      herstellen.
+
+      '
+  - id: CL_008_programme_scope_mismatch
+    name: Widersprüchlicher Gesamtumfang des Studiengangs
+    category: inconsistency
+    default_severity: high
+    triggers:
+    - bachelor_structure
+    - master_structure
+    detects:
+    - Die Summe der curricular ausgewiesenen Leistungspunkte stimmt nicht mit dem ausgewiesenen Gesamtumfang überein.
+    - Unterschiedliche Dokumente nennen verschiedene Gesamtumfänge.
+    required_evidence:
+    - programme_scope
+    - module_credit_sum
+    normative_requirement: false
+    finding_template: 'Der dokumentierte Gesamtumfang des Studiengangs ist nicht konsistent.
+
+      '
+    issue_template: 'Die Studienstruktur ist rechnerisch oder dokumentarisch widersprüchlich.
+
+      '
+    recommendation_template: 'Gesamtumfang und Modulstruktur rechnerisch sowie dokumentübergreifend abgleichen und
+      konsistent ausweisen.
+
+      '
+  - id: CL_009_duplicate_module_identifier
+    name: Mehrdeutige oder doppelte Modulkennung
+    category: documentation_gap
+    default_severity: medium
+    triggers:
+    - modularisation
+    - documentation_completeness
+    detects:
+    - Eine Modulnummer wird für unterschiedliche Module verwendet.
+    - Dasselbe Modul wird mit mehreren Kennungen geführt, ohne dass die Beziehung erklärt ist.
+    required_evidence:
+    - module_identifiers
+    normative_requirement: false
+    finding_template: 'Modulkennungen sind nicht eindeutig oder konsistent verwendet.
+
+      '
+    issue_template: 'Die eindeutige Zuordnung von Modulangaben ist beeinträchtigt.
+
+      '
+    recommendation_template: 'Modulkennungen vereinheitlichen oder bestehende Mehrfachkennungen transparent erläutern.
+
+      '
+  - id: CL_010_missing_learning_outcomes
+    name: Fehlende oder nicht prüfbare Lern- und Kompetenzziele
+    category: documentation_gap
+    default_severity: high
+    triggers:
+    - competence_orientation
+    - documentation_completeness
+    detects:
+    - Lern- oder Kompetenzziele fehlen.
+    - Die Angaben beschreiben ausschließlich Inhalte, ohne erkennbare Lernergebnisse.
+    required_evidence:
+    - active_learning_outcome_requirement
+    normative_requirement: true
+    finding_template: 'Lern- bzw. Kompetenzziele sind nicht oder nicht hinreichend dokumentiert.
+
+      '
+    issue_template: 'Kompetenzorientierung und Prüfungskonzept sind dadurch nicht belastbar prüfbar.
+
+      '
+    recommendation_template: 'Lern- und Kompetenzziele so dokumentieren, dass die erwarteten Lernergebnisse nachvollziehbar
+      erkennbar sind.
+
+      '
+    result_logic:
+      binding_requirement_and_absent: ABWEICHUNG
+      missing_evidence_to_determine_presence: NICHT PRÜFBAR
+  - id: CL_011_objective_coverage_gap
+    name: Studiengangziel im Curriculum nicht nachvollziehbar abgedeckt
+    category: plausibility_issue
+    default_severity: medium
+    triggers:
+    - competence_orientation
+    detects:
+    - Ein dokumentiertes Studiengangziel lässt sich keinem Modul nachvollziehbar zuordnen.
+    - Die Zielmatrix weist eine erkennbare Abdeckungslücke auf.
+    required_evidence:
+    - programme_objectives
+    - module_learning_outcomes
+    normative_requirement: false
+    finding_template: 'Für ein ausgewiesenes Studiengangziel ist kein hinreichender curricularer Beitrag erkennbar.
+
+      '
+    issue_template: 'Die curriculare Umsetzung des Studiengangziels ist nicht nachvollziehbar.
+
+      '
+    recommendation_template: 'Den curricularen Beitrag geeigneter Module kenntlich machen oder die Ziel- bzw. Modulbeschreibung
+      entsprechend überprüfen.
+
+      '
+  - id: CL_012_prerequisite_cycle
+    name: Zyklische oder unplausible Teilnahmevoraussetzungen
+    category: inconsistency
+    default_severity: high
+    triggers:
+    - modularisation
+    - bachelor_structure
+    - master_structure
+    detects:
+    - Modul A setzt Modul B voraus, während Modul B direkt oder indirekt Modul A voraussetzt.
+    - Voraussetzungen verhindern den vorgesehenen Studienverlauf.
+    required_evidence:
+    - module_prerequisites
+    - study_plan
+    normative_requirement: false
+    finding_template: 'Die dokumentierten Voraussetzungen erzeugen eine zyklische oder strukturell unplausible Abhängigkeit.
+
+      '
+    issue_template: 'Der vorgesehene Studienverlauf ist dadurch nicht widerspruchsfrei abbildbar.
+
+      '
+    recommendation_template: 'Voraussetzungen und Studienverlaufsplan aufeinander abstimmen und zyklische Abhängigkeiten
+      beseitigen.
+
+      '
+  - id: CL_013_final_module_inconsistency
+    name: Inkonsistenz im Abschlussbereich
+    category: inconsistency
+    default_severity: high
+    triggers:
+    - graduation
+    detects:
+    - Abschlussarbeit, Abschlussmodul oder zugehörige Leistungspunkte sind zwischen Dokumenten unterschiedlich ausgewiesen.
+    - Prüfungsform oder Bestandteile des Abschlussbereichs widersprechen sich.
+    required_evidence:
+    - final_module
+    - thesis
+    normative_requirement: false
+    finding_template: 'Die Angaben zum Abschlussbereich sind nicht konsistent.
+
+      '
+    issue_template: 'Umfang, Prüfungsbestandteile oder Struktur des Abschlussbereichs sind nicht eindeutig bestimmbar.
+
+      '
+    recommendation_template: 'Die Regelungen zum Abschlussbereich dokumentübergreifend harmonisieren.
+
+      '
+  - id: CL_014_joint_programme_governance_gap
+    name: Unvollständige Joint-Programme-Governance
+    category: documentation_gap
+    default_severity: high
+    triggers:
+    - joint_programmes
+    detects:
+    - Governance, Qualitätssicherung, Verantwortlichkeiten oder Abschlussvergabe sind nicht hinreichend dokumentiert.
+    required_evidence:
+    - joint_programme_context
+    normative_requirement: true
+    finding_template: 'Joint-Programme-spezifische Governance- oder Qualitätssicherungsstrukturen sind nicht vollständig
+      nachvollziehbar dokumentiert.
+
+      '
+    issue_template: 'Eine belastbare Prüfung der kooperativen Programmstruktur ist nicht möglich bzw. der aktive
+      Prüfmaßstab ist nicht nachweisbar erfüllt.
+
+      '
+    recommendation_template: 'Governance, Zuständigkeiten, Qualitätssicherung und Abschlusslogik vollständig und
+      konsistent dokumentieren.
+
+      '
+    result_logic:
+      binding_governance_requirement_and_absent: ABWEICHUNG
+      required_reference_missing: NICHT PRÜFBAR
+  - id: CL_015_special_rule_misapplied
+    name: Spezialregel außerhalb ihres Geltungsbereichs angewandt
+    category: scope_error
+    default_severity: medium
+    triggers:
+    - teacher_education
+    - joint_programmes
+    - language_admission
+    detects:
+    - Eine Spezialregel wird auf einen fachlich oder organisatorisch nicht erfassten Prüfgegenstand übertragen.
+    required_evidence:
+    - scope_result
+    normative_requirement: true
+    finding_template: 'Eine Regelquelle wurde außerhalb ihres dokumentierten Geltungsbereichs verwendet.
+
+      '
+    issue_template: 'Der Prüfmaßstab ist methodisch unzulässig gewählt.
+
+      '
+    recommendation_template: 'Die betreffende Regelquelle aus der Bewertung entfernen und den anwendbaren Prüfmaßstab
+      anhand des Scope Matchers neu bestimmen.
+
+      '
+  - id: CL_016_missing_reference_document
+    name: Fehlendes Referenzdokument
+    category: missing_reference
+    default_severity: medium
+    triggers:
+    - missing_reference
+    detects:
+    - Eine anwendbare Regelquelle verweist auf eine weitere Quelle, die nicht verfügbar ist.
+    required_evidence:
+    - normative_reference_missing
+    normative_requirement: true
+    finding_template: 'Die verfügbare Regelbasis ist unvollständig, weil ein referenziertes Dokument fehlt.
+
+      '
+    issue_template: 'Die Prüfung kann an dieser Stelle nicht vollständig durchgeführt werden.
+
+      '
+    recommendation_template: 'Das fehlende Referenzdokument ergänzen oder die betroffene Bewertung ausdrücklich
+      als nicht prüfbar kennzeichnen.
+
+      '
+    output_default: NICHT PRÜFBAR
+  - id: CL_017_normative_conflict
+    name: Nicht eindeutig auflösbarer Normkonflikt
+    category: regulatory_gap
+    default_severity: high
+    detects:
+    - Mehrere anwendbare Regelquellen enthalten widersprüchliche Anforderungen.
+    - Die Konfliktauflösung über Rang, Spezifität und Zeit führt zu keinem eindeutigen Ergebnis.
+    required_evidence:
+    - conflict_log
+    normative_requirement: true
+    finding_template: 'Zwischen anwendbaren Regelquellen besteht ein nicht eindeutig auflösbarer Konflikt.
+
+      '
+    issue_template: 'Eine belastbare normative Bewertung ist an dieser Stelle nicht möglich.
+
+      '
+    recommendation_template: 'Den Normkonflikt fachlich oder rechtlich klären und bis dahin als Normunklarheit dokumentieren.
+
+      '
+    output_default: UNKLAR
+    activation_event: unresolved_norm_conflict
+  - id: CL_018_unjustified_compliance_assumption
+    name: Nicht belegte Konformitätsannahme
+    category: analyzer_integrity
+    default_severity: high
+    detects:
+    - Ein Prüfpunkt wird als erfüllt bewertet, obwohl die erforderliche Evidenz fehlt.
+    required_evidence:
+    - assessment_trace
+    normative_requirement: false
+    finding_template: 'Für die positive Bewertung liegt keine ausreichende dokumentierte Evidenz vor.
+
+      '
+    issue_template: 'Fehlende Evidenz wurde faktisch wie Konformität behandelt.
+
+      '
+    recommendation_template: 'Bewertung auf ''NICHT PRÜFBAR'' oder ''UNKLAR'' zurücksetzen und die fehlende Evidenz
+      benennen.
+
+      '
+    internal_only: true
+    activation_event: unsupported_positive_assessment
+  - id: CL_019_attendance_requirement_issue
+    name: Problematische Anwesenheits- oder Teilnahmeanforderung
+    category: context_dependent
+    default_severity: medium
+    triggers:
+    - attendance_requirements
+    detects:
+    - Anwesenheit oder Teilnahme wird verlangt, ohne dass die anwendbare Regelgrundlage dies trägt.
+    - Die konkrete Mitwirkungsanforderung ist nicht operationalisiert oder nicht nachvollziehbar an Lern-/Kompetenzziele
+      angebunden.
+    required_evidence:
+    - attendance_or_participation_rule
+    normative_requirement: false
+    result_logic:
+      applicable_binding_rule_violated: ABWEICHUNG
+      only_quality_or_plausibility_concern: HINWEIS
+      normative_basis_unclear: UNKLAR
+  output_rules:
+    rule: 'Konfliktmuster dürfen nur dann als "ABWEICHUNG" ausgegeben werden, wenn eine anwendbare normative Grundlage
+      oder eine eindeutig dokumentierte Inkonsistenz vorliegt.
+
+      '
+    note_rule: 'Muster mit normative_requirement: false führen standardmäßig nicht zu einer verbindlichen Abweichung.
+      Sie werden als Hinweis, Unklarheit oder Plausibilitätsproblem ausgegeben, sofern kein aktives Profil eine
+      verbindliche Anforderung ergänzt.
+
+      '
+    evidence_rule: 'Ein Muster darf nicht ausgelöst werden, wenn seine erforderliche Evidenz nicht verfügbar ist.
+      In diesem Fall ist gegebenenfalls ein Dokumentationslücken-Muster zu verwenden.
+
+      '
+  validation:
+    rules:
+    - id: CONFLICT_VAL_001
+      description: 'Kein Konfliktmuster darf eine konkrete Rechtsquelle fest verdrahten.
+
+        '
+      on_violation: remove_source_reference
+    - id: CONFLICT_VAL_002
+      description: 'Kein Konfliktmuster darf einen lokalen Schwellenwert im Core enthalten.
+
+        '
+      on_violation: move_threshold_to_profile
+    - id: CONFLICT_VAL_003
+      description: 'Ein Plausibilitätsmuster darf nicht automatisch als Normabweichung ausgegeben werden.
+
+        '
+      on_violation: downgrade_to_note_or_unclear
+    - id: CONFLICT_VAL_004
+      description: 'Fehlende Evidenz darf nicht als positiver Nachweis des Konflikts interpretiert werden.
+
+        '
+      on_violation: mark_not_assessable
+    - id: CONFLICT_VAL_005
+      description: 'Scope-Fehler müssen aus den Ergebnissen des Scope Matchers ableitbar sein.
+
+        '
+      on_violation: reject_scope_conflict
+  extension_points:
+    regulatory_profile_may_add:
+    - jurisdiction_specific_conflict_patterns
+    - legally_defined_severity_rules
+    - normative_threshold_conflicts
+    institution_profile_may_add:
+    - local_conflict_patterns
+    - institution_specific_required_fields
+    - local_process_conflicts
+    restriction: 'Profil-Erweiterungen dürfen Core-Muster ergänzen oder konkretisieren, aber keine Quellenbindung,
+      Scope-Prüfung oder Evidenzanforderung stillschweigend aufheben.
+
+      '
+  architecture:
+    core_must_not_contain:
+    - concrete_legal_source
+    - concrete_state_name
+    - concrete_institution_name
+    - fixed_credit_hour_value
+    - fixed_semester_credit_value
+    - local_contact
+    - local_document_identifier
+    invariant: 'Ein Wechsel von Bundesland, Hochschule oder regulatorischem Profil darf keine Änderung dieser Datei
+      erforderlich machen.
+
+      '

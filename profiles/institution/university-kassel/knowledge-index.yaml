@@ -1,0 +1,23 @@
+knowledge_index:
+  version: '1.2'
+  profile: university-kassel
+  documents:
+  - id: ab_bama
+    path: knowledge/ab-bama.pdf
+    previous_filename: AB_BAMA.pdf
+  - id: ab_practical_modules
+    path: knowledge/ab-praxismodule.pdf
+    previous_filename: AB Praxismodule 20110143.pdf
+  - id: programme_concept_form
+    path: knowledge/studiengangskonzept.pdf
+    previous_filename: Formular Studiengangskonzept
+    status: missing
+    default_enabled: false
+    note: Geplanter Knowledge-Baustein; nicht aktivieren, solange die PDF nicht im Repository liegt.
+  programme_feature_documents:
+  - feature: sustainability_studies
+    profile_path: programme-features/nachhaltigkeitsstudien/profile.yaml
+    document_id: ab_nas_2024
+    path: programme-features/nachhaltigkeitsstudien/knowledge/ab-nas-2024.pdf
+    previous_filename: FB05_AB_NaS_Ba_ÄO-2024_ver.pdf
+    note: Hochschulweite, studiengangsübergreifend aktivierbare Allgemeine Bestimmungen; keine Einzel-FPO.

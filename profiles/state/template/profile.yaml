@@ -1,0 +1,124 @@
+profile:
+  id: "state-template"
+  version: "1.0"
+  name: "Landesprofil – Template"
+  description: >
+    Vorlage für ein landesspezifisches Studiengang-CompAIgnon-Profil. Dieses Profil ergänzt die
+    deutsche Basisschicht unter regulatory/de um die für ein konkretes
+    Bundesland geltenden gesetzlichen und verordnungsrechtlichen Regelungen.
+
+  jurisdiction:
+    country_code: "DE"
+    state_code: "<STATE_CODE>"
+    state_name: "<STATE_NAME>"
+
+  inherits:
+    - "regulatory/de"
+
+  language:
+    default: "de"
+
+  regulatory_levels:
+    - id: "state_law"
+      name: "Landesrecht"
+      description: >
+        Gesetzliche und verordnungsrechtliche Regelungen des jeweiligen
+        Bundeslandes.
+
+  precedence:
+    description: >
+      Das Landesprofil ergänzt die deutsche Basisschicht um landesspezifische
+      Normen. Konkrete Vorrangentscheidungen erfolgen über
+      core/rule-engine/norm-logic.yaml.
+    precedence_extensions:
+      - level: "state_law"
+        relative_position: "above_institution"
+
+  sources:
+    - id: "<STATE_HIGHER_EDUCATION_ACT_ID>"
+      title: "<TITLE_HIGHER_EDUCATION_ACT>"
+      regulatory_level: "state_law"
+      source_type: "law"
+      status: "binding"
+      scope:
+        jurisdiction:
+          country: "DE"
+          state: "<STATE_CODE>"
+        subject_area:
+          - programme_structure
+          - examinations
+          - admission
+          - recognition
+          - graduation
+          - quality_assurance
+      knowledge_file: "knowledge/<higher-education-act>.pdf"
+
+    - id: "<STATE_ACCREDITATION_REGULATION_ID>"
+      title: "<TITLE_ACCREDITATION_REGULATION>"
+      regulatory_level: "state_law"
+      source_type: "regulation"
+      status: "binding"
+      scope:
+        jurisdiction:
+          country: "DE"
+          state: "<STATE_CODE>"
+        subject_area:
+          - programme_structure
+          - modularisation
+          - workload_and_credits
+          - qualification_objectives
+          - learning_outcomes
+          - quality_assurance
+          - graduation
+      knowledge_file: "knowledge/<accreditation-regulation>.pdf"
+
+    - id: "<STATE_ACCREDITATION_EXPLANATORY_ID>"
+      title: "<TITLE_ACCREDITATION_EXPLANATORY_DOCUMENT>"
+      regulatory_level: "state_law"
+      source_type: "explanatory_document"
+      status: "interpretative"
+      scope:
+        jurisdiction:
+          country: "DE"
+          state: "<STATE_CODE>"
+        subject_area:
+          - programme_structure
+          - modularisation
+          - workload_and_credits
+          - qualification_objectives
+          - learning_outcomes
+          - quality_assurance
+          - graduation
+      knowledge_file: "knowledge/<accreditation-explanatory-document>.pdf"
+
+  optional_sources:
+    description: >
+      Weitere landesspezifische Quellen können ergänzt werden, wenn sie
+      tatsächlich normativ oder auslegungsrelevant sind.
+    examples:
+      - teacher_education_law
+      - teacher_education_regulation
+      - state_specific_admission_regulation
+      - state_specific_recognition_regulation
+      - state_specific_structure_guidance
+
+  scope_guards:
+    - id: "STATE_SCOPE_001"
+      rule: >
+        Quellen dieses Profils dürfen nur auf Studiengänge angewandt werden,
+        deren Institution im aktiven Kontext dem hier definierten Bundesland
+        zugeordnet ist.
+    - id: "STATE_SCOPE_002"
+      rule: >
+        Landesspezifische Regelungen dürfen nicht auf Institutionen in anderen
+        Bundesländern übertragen werden.
+    - id: "STATE_SCOPE_003"
+      rule: >
+        Auslegungs- oder Begründungsdokumente dürfen verbindliche Regelungen
+        erläutern, aber nicht ohne ausdrückliche Grundlage neue Pflichten
+        erzeugen.
+
+  architecture_rule: >
+    Dieses Profil enthält ausschließlich landesspezifische Regelquellen und
+    Regelparameter. Hochschulspezifische Satzungen, Terminologie, Zuständigkeiten
+    und Ansprechpartner gehören in profiles/institution/.

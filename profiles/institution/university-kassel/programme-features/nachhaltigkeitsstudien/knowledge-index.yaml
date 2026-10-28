@@ -1,0 +1,9 @@
+knowledge_index:
+  version: '1.0'
+  programme_feature: sustainability_studies
+  documents:
+  - id: ab_nas_2024
+    path: knowledge/ab-nas-2024.pdf
+    previous_filename: FB05_AB_NaS_Ba_ÄO-2024_ver.pdf
+    status: binding
+    scope: university-kassel + sustainability_studies

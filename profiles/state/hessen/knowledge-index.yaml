@@ -1,0 +1,14 @@
+knowledge_index:
+  version: "1.0"
+  profile: "hessen"
+
+  documents:
+    - id: "hesshg"
+      path: "knowledge/hesshg.pdf"
+      previous_filename: "HSchulG_HE_2022.pdf"
+    - id: "hestakv"
+      path: "knowledge/hestakv.pdf"
+      previous_filename: "HeStakV Lesefassung.pdf"
+    - id: "hestakv_explanatory"
+      path: "knowledge/hestakv-begruendung.pdf"
+      previous_filename: "HE_StakV Begründung.pdf"

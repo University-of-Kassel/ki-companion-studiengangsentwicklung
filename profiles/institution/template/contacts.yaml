@@ -1,0 +1,48 @@
+contacts:
+  version: "1.0"
+  institution: "<INSTITUTION_ID>"
+
+  description: >
+    Optionale lokale Zuständigkeiten und Kontaktstellen für Weiterleitungen.
+    Diese Informationen werden erst nach der fachlichen Studiengang-CompAIgnon-Analyse genutzt
+    und dürfen die Bewertung nicht beeinflussen.
+
+  routing:
+
+    programme_planning:
+      unit: "<UNIT_NAME>"
+      url: "<URL>"
+      email: "<EMAIL>"
+
+    accreditation:
+      unit: "<UNIT_NAME>"
+      url: "<URL>"
+      email: "<EMAIL>"
+
+    examination_law:
+      unit: "<UNIT_NAME>"
+      url: "<URL>"
+      email: "<EMAIL>"
+
+    quality_management:
+      unit: "<UNIT_NAME>"
+      url: "<URL>"
+      email: "<EMAIL>"
+
+  named_contacts: []
+
+  output_rules:
+
+    - id: "CONTACT_001"
+      rule: >
+        Persönliche Kontaktdaten nur ausgeben, wenn sie im Profil ausdrücklich
+        freigegeben sind.
+
+    - id: "CONTACT_002"
+      rule: >
+        Wo eine Funktionsadresse oder Organisationseinheit ausreicht, ist diese
+        einer persönlichen Kontaktangabe vorzuziehen.
+
+    - id: "CONTACT_003"
+      rule: >
+        Kontaktinformationen dürfen nie als normative Quelle verwendet werden.

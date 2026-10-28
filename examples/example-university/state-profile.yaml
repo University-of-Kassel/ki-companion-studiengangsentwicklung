@@ -1,0 +1,30 @@
+profile:
+  id: "example-state"
+  version: "1.0"
+  name: "Example State"
+  description: >
+    Rein fiktives Landesprofil zur Demonstration der Studiengang-CompAIgnon-Konfiguration.
+    Dieses Profil darf nicht für reale Konformitätsprüfungen verwendet werden.
+
+  demo_only: true
+
+  jurisdiction:
+    country_code: "DE"
+    state_code: "EX"
+    state_name: "Example State"
+
+  inherits:
+    - "regulatory/de"
+
+  sources:
+    - id: "example_state_higher_education_act"
+      title: "Example Higher Education Act"
+      regulatory_level: "state_law"
+      source_type: "law"
+      status: "binding"
+      demo_only: true
+      scope:
+        jurisdiction:
+          country: "DE"
+          state: "EX"
+      knowledge_file: "knowledge/example-state-law.txt"

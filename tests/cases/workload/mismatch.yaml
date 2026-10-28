@@ -1,0 +1,12 @@
+test_case:
+  id: "workload_mismatch_demo"
+  description: >
+    Fiktiver Testfall für eine inkonsistente Workload-Credit-Relation.
+  context:
+    profile: "example-university"
+    object_type: "module_handbook"
+  document:
+    module_id: "M1"
+    module_name: "Example Module"
+    credits: 5
+    workload_hours: 200

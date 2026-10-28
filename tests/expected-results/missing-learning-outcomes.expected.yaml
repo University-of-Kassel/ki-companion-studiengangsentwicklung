@@ -1,0 +1,11 @@
+expected_result:
+  test_case: missing_learning_outcomes_demo
+  trigger:
+    id: documentation_completeness
+    status: allowed
+  conflict_pattern:
+    id: CL_002_missing_required_field
+  status: ABWEICHUNG
+  missing_field: learning_outcomes
+  note: Das aktive Example-University-Profil verlangt learning_outcomes ausdrücklich; das nachweisliche Fehlen ist
+    daher eine Abweichung, nicht bloß nicht prüfbar.

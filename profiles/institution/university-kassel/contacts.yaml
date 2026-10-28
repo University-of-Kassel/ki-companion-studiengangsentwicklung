@@ -1,0 +1,18 @@
+contacts:
+  version: "1.0"
+  institution: "university-kassel"
+
+  routing:
+    programme_planning:
+      unit: "Abteilung Entwicklungsplanung"
+      url: "https://www.uni-kassel.de/hochschulverwaltung/organisation/abteilungen/entwicklungsplanung/ansprechpersonen.html"
+
+    accreditation:
+      unit: "Gruppe Qualitätsentwicklung, Abteilung Studium und Lehre"
+      url: "http://www.uni-kassel.de/go/qualität/"
+
+    quality_management:
+      unit: "Gruppe Qualitätsentwicklung, Abteilung Studium und Lehre"
+      url: "http://www.uni-kassel.de/go/qualität/"
+
+  named_contacts: []

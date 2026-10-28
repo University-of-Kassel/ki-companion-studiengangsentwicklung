@@ -1,0 +1,106 @@
+knowledge_index:
+  version: '1.3'
+  profile: regulatory/de
+  audit_date: '2026-10-06'
+  documents:
+  - id: accreditation_treaty
+    path: knowledge/accreditation/studienakkreditierungsstaatsvertrag.pdf
+    status: binding_framework
+    action: add
+    version_date: null
+    default_enabled: true
+  - id: mrvo_2024
+    path: knowledge/accreditation/mrvo-2024.pdf
+    status: supplementary
+    action: add
+    version_date: null
+    default_enabled: true
+  - id: hqr
+    path: knowledge/qualifications-framework/hqr.pdf
+    status: binding_framework
+    action: keep
+    version_date: '2017-02-16'
+    default_enabled: true
+  - id: kmk_structure_framework
+    path: knowledge/accreditation/legacy/kmk-strukturvorgaben-2010.pdf
+    status: supplementary
+    action: move_to_legacy
+    version_date: '2010-02-04'
+    default_enabled: false
+  - id: kmk_accreditation_principles_2004
+    path: knowledge/accreditation/legacy/kmk-eckpunkte-akkreditierung-2004.pdf
+    status: informative
+    action: keep
+    version_date: '2004-10-15'
+    default_enabled: false
+  - id: kmk_continuing_education
+    path: knowledge/accreditation/kmk-weiterbildung-2009.pdf
+    status: supplementary
+    action: keep
+    version_date: '2009-02-05'
+    default_enabled: true
+  - id: ro_dt
+    path: knowledge/accreditation/ro-dt-2025.pdf
+    status: binding_framework
+    action: replace
+    version_date: '2025-11-27'
+    default_enabled: true
+    decision_dates:
+      hrk: '2025-11-04'
+      kmk: '2025-11-27'
+    public_release_year: 2026
+    public_announcement_date: '2026-01-26'
+    note: Beschlussstand 2025; oeffentliche Bereitstellung/Kommunikation 2026.
+  - id: accreditation_council_structure_interpretation_2013
+    path: knowledge/accreditation/legacy/ar-auslegung-strukturvorgaben-2013.pdf
+    status: inactive
+    action: move_to_legacy
+    version_date: '2013-06-03'
+    default_enabled: false
+  - id: accreditation_council_state_specific_rules_2016
+    path: knowledge/accreditation/legacy/ar-landesspezifische-strukturvorgaben-2016.pdf
+    status: inactive
+    action: move_to_legacy
+    version_date: '2016-09-05'
+    default_enabled: false
+  - id: teacher_education_quedlinburg_2005
+    path: knowledge/teacher-education/quedlinburger-beschluss-2005.pdf
+    status: binding_framework
+    action: add
+    version_date: '2005-06-02'
+    default_enabled: true
+  - id: teacher_education_quedlinburg_application_2007
+    path: knowledge/teacher-education/quedlinburger-anwendungsprobleme-2007.pdf
+    status: interpretative
+    action: keep
+    version_date: '2007-02-28'
+    default_enabled: true
+  - id: teacher_education_educational_sciences
+    path: knowledge/teacher-education/standards-bildungswissenschaften-2022.pdf
+    status: binding_framework
+    action: add
+    version_date: '2022-10-07'
+    default_enabled: true
+  - id: teacher_education_subject_profiles
+    path: knowledge/teacher-education/fachprofile-lehrerbildung-2024.pdf
+    status: binding_framework
+    action: replace
+    version_date: '2024-02-08'
+    default_enabled: true
+  - id: esg_2015
+    path: knowledge/quality-assurance/esg-2015.pdf
+    status: supplementary
+    action: keep
+    version_date: '2015'
+    default_enabled: true
+  - id: european_approach_joint_programmes
+    path: knowledge/joint-programmes/european-approach-2015.pdf
+    status: supplementary
+    action: keep
+    version_date: 2015-05
+    default_enabled: true
+  institution_specific_exclusions:
+  - title: Kriterienkatalog „Guter Bachelorstudiengang“
+    action: do_not_place_in_regulatory_de
+    reason: Kein übergreifender deutscher Rechts- oder Referenzrahmen nachgewiesen; bei Kasseler Herkunft in das
+      Institutionsprofil verschieben.

@@ -1,0 +1,132 @@
+scope_matcher:
+  version: '2.3'
+  purpose: Bestimmt ausschließlich die Anwendbarkeit einer Quelle oder Regel anhand des Prüfkontexts. Normrang und
+    materielle Konformität werden hier nicht entschieden.
+  context_model:
+    jurisdiction:
+      fields:
+      - supranational_area
+      - country
+      - state
+      - region
+      hierarchy_source: active_profiles
+    institution:
+      optional: true
+    programme_type:
+      description: Struktureller Abschluss-/Studiengangtyp; keine Overlay-Merkmale.
+      allowed_default:
+      - bachelor
+      - master
+      - state_examination
+      - other
+      single_valued: true
+    degree_type:
+      optional: true
+    programme_features:
+      description: Mehrfach kombinierbare Merkmale eines Studiengangs.
+      multi_valued: true
+      examples:
+      - teacher_education
+      - joint_programme
+      - joint_degree
+      - double_degree
+      - continuing_education
+      - dual
+      - part_time
+      - distance_learning
+    subject_area:
+      multi_valued: true
+    object_type:
+      optional: true
+    temporal_context:
+      optional: true
+    feature_parameters:
+      description: Parameter für aktivierte Programme-Features; Schlüssel ist die feature id.
+      multi_feature: true
+      example:
+        sustainability_studies:
+          integration_mode: inas_b
+  source_scope_fields:
+  - jurisdiction
+  - institution
+  - programme_type
+  - degree_type
+  - programme_features
+  - feature_parameters
+  - subject_area
+  - object_type
+  - temporal_scope
+  - inclusion_conditions
+  - exclusion_conditions
+  matching_rules:
+    explicit_mismatch: not_applicable
+    unknown_required_context: unclear
+    empty_source_scope_field: no_restriction_on_dimension
+    explicit_exclusion_overrides_inclusion: true
+    multi_value_context:
+      programme_features: source_requirement_must_be_subset_or_match_declared_operator
+      subject_area: at_least_one_match_unless_source_declares_all_required
+    hierarchy: Geografische oder institutionelle Hierarchien dürfen nur aus aktiven Profilen stammen; keine Ergänzung
+      aus Modellwissen.
+    feature_parameters: Feature-Parameter werden nur ausgewertet, wenn das zugehörige programme_feature aktiv ist;
+      fehlende erforderliche Parameter ergeben UNCLEAR statt einer geratenen Auswahl.
+  legacy_normalization:
+    enabled: true
+    programme_type_aliases_to_features:
+      teacher_education: teacher_education
+      joint_programme: joint_programme
+      continuing_education: continuing_education
+    rule: Legacy-Werte werden für die Übergangsphase normalisiert und als Migrationswarnung protokolliert; neue
+      Profile sollen programme_features verwenden.
+  results:
+  - applicable
+  - supplementary
+  - not_applicable
+  - unclear
+  - source_missing
+  evaluation_sequence:
+  - source_active
+  - explicit_exclusion
+  - jurisdiction
+  - institution
+  - programme_type
+  - degree_type
+  - programme_features
+  - feature_parameters
+  - subject_area
+  - object_type
+  - temporal_scope
+  - inclusion_conditions
+  - aggregate
+  aggregation:
+    explicit_mismatch: not_applicable
+    missing_required_dimension: unclear
+    supplementary_only_if_source_status_or_profile_says_so: true
+  output_to_norm_logic:
+  - source_id
+  - scope_result
+  - matched_dimensions
+  - unmatched_dimensions
+  - unknown_dimensions
+  - scope_reasoning
+  validation:
+  - id: SCOPE_VAL_001
+    rule: Keine institutionelle Regel auf andere Institution übertragen.
+  - id: SCOPE_VAL_002
+    rule: Keine Landesregel außerhalb ihres Landes anwenden.
+  - id: SCOPE_VAL_003
+    rule: Overlay-Merkmale nicht als gegenseitig ausschließende programme_type-Werte behandeln.
+  - id: SCOPE_VAL_004
+    rule: Fehlende Scope-Information nicht stillschweigend ergänzen.
+  - id: SCOPE_VAL_005
+    rule: Expliziten Scope-Ausschluss nicht durch andere Treffer aufheben.
+  - id: SCOPE_VAL_006
+    rule: Feature-Parameter nicht aus thematischer Ähnlichkeit oder Modellwissen erraten.
+  - id: SCOPE_VAL_007
+    rule: Überstaatliche Geltungsräume wie EHEA über supranational_area und nicht als Staat oder Region modellieren.
+  architecture:
+    core_must_not_contain:
+    - concrete_state_name
+    - concrete_institution_name
+    - concrete_legal_source
+    - local_threshold

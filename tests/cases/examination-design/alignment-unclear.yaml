@@ -1,0 +1,14 @@
+test_case:
+  id: "assessment_alignment_unclear_demo"
+  description: >
+    Fiktiver Testfall: Prüfungsform ist vorhanden, Kompetenzziel aber zu
+    unspezifisch für eine belastbare Alignment-Bewertung.
+  context:
+    profile: "example-university"
+    object_type: "module_handbook"
+  document:
+    module_id: "M3"
+    module_name: "Example Assessment Module"
+    learning_outcomes:
+      - "Students understand the subject."
+    assessment_type: "written examination"

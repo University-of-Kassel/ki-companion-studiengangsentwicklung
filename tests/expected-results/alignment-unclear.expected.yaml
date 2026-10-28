@@ -1,0 +1,8 @@
+expected_result:
+  test_case: "assessment_alignment_unclear_demo"
+  trigger:
+    id: "assessment_alignment"
+    status: "allowed"
+  status: "UNKLAR"
+  rule: >
+    Keine automatische Abweichung allein aus der Bezeichnung der Prüfungsform.

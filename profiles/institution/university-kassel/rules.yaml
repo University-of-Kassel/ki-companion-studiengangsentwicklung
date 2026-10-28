@@ -1,0 +1,369 @@
+rules:
+  version: '1.2'
+  profile: university-kassel
+  audited_against:
+  - source: ab_bama
+    source_title: Allgemeine Bestimmungen für Fachprüfungsordnungen mit den Abschlüssen Bachelor und Master
+    source_version: Nichtamtliche Lesefassung, Stand 17.11.2025
+  - source: ab_practical_modules
+    source_title: Allgemeine Bestimmungen für Praxismodule in den Bachelor- und Masterstudiengängen
+    source_version: 19.01.2011
+  quantitative_rules:
+  - id: uk_workload_per_credit
+    trigger: workload_credit_relation
+    parameter: hours_per_credit
+    default_value: 30
+    allowed_range:
+      min: 25
+      max: 30
+    default_annual_workload_hours: 1800
+    allowed_annual_workload_range:
+      min: 1500
+      max: 1800
+    deviation_allowed_if:
+    - Fachprüfungsordnung enthält eine abweichende Regelung.
+    source: ab_bama
+    citation: § 8 Abs. 3, S. 7
+    status: binding
+    interpretation: Die AB BAMA bestätigt den landesrechtlichen Korridor 25–30 Stunden je Credit und setzt 30 Stunden
+      als institutionellen Regelfall. Die Engine erzeugt daraus nur einen Workload-Befund und führt beide Quellen
+      zusammen.
+    semantic_key: hours_per_credit
+    supports_rule: he_hours_per_credit
+  - id: uk_minimum_module_size
+    trigger: modularisation
+    parameter: minimum_module_credits
+    value: 5
+    qualifier: soll
+    source: ab_bama
+    citation: § 6 Abs. 2, S. 5
+    status: binding_framework
+    comply_or_explain: true
+    interpretation: 'Module sollen mindestens fünf Credits umfassen. Abweichungen sind nicht schematisch als Verstoß
+      zu behandeln, sondern begründungsbedürftig.
+
+      '
+    semantic_key: minimum_module_credits
+    supports_rule: he_module_minimum_size
+  module_examination_rules:
+  - id: uk_one_exam_per_module_default
+    trigger: assessment_alignment
+    rule: 'Module werden in der Regel mit einer Prüfungsleistung abgeschlossen.
+
+      '
+    source: ab_bama
+    citation: § 6 Abs. 4, S. 5
+    status: binding_framework
+  - id: uk_multiple_partial_exams_exception
+    trigger: assessment_alignment
+    rule: 'Eine abschließende Prüfungsleistung darf sich in begründeten Ausnahmefällen kumulativ aus mehreren Modulteilprüfungsleistungen
+      zusammensetzen.
+
+      '
+    source: ab_bama
+    citation: § 6 Abs. 5, S. 5
+    status: binding
+    conditions:
+    - begründeter Ausnahmefall
+    supporting_conditions:
+      any:
+      - didaktisch-methodische Begründung
+      - Modulumfang ab 9 Credits
+    equivalence_requirement: 'Durch die Summe der Prüfungsergebnisse muss derselbe Nachweis erbracht werden wie
+      durch eine abschließende Prüfungsleistung.
+
+      '
+  required_fields:
+    module_handbook:
+      source: ab_bama
+      citation: § 6 Abs. 11 i. V. m. Anlage 2.1, S. 6 und S. 28
+      interpretation: 'Jedes Modul ist gemäß Anlage 2.1 einzeln im Modulhandbuch zu beschreiben. Die nachfolgenden
+        Felder bilden daher das Kasseler Moduldaten-Schema. Bei sachlich nicht einschlägigen Feldern kann eine ausdrückliche
+        Negativangabe sinnvoller sein als ein leeres Feld.
+
+        '
+      fields:
+      - id: module_code
+        label: Nummer/Code
+        presence_required: true
+      - id: module_name
+        label: Modulname
+        presence_required: true
+      - id: module_type
+        label: Art des Moduls
+        presence_required: true
+      - id: learning_outcomes
+        label: Lernergebnisse, Kompetenzen, Qualifikationsziele
+        presence_required: true
+      - id: course_types
+        label: Lehrveranstaltungsarten
+        presence_required: true
+      - id: course_contents
+        label: Lehrinhalte
+        presence_required: true
+      - id: course_titles
+        label: Titel der Lehrveranstaltungen
+        presence_required: true
+      - id: teaching_learning_methods
+        label: Lehr- und Lernmethoden (Lehr- und Lernformen)
+        presence_required: true
+      - id: module_applicability
+        label: Verwendbarkeit des Moduls
+        presence_required: true
+      - id: module_duration
+        label: Dauer des Angebotes des Moduls
+        presence_required: true
+      - id: offering_frequency
+        label: Häufigkeit des Angebotes des Moduls
+        presence_required: true
+      - id: language
+        label: Sprache
+        presence_required: true
+      - id: recommended_prerequisites
+        label: Empfohlene (inhaltliche) Voraussetzungen für die Teilnahme am Modul
+        presence_required: true
+        explicit_none_allowed: true
+      - id: participation_requirements
+        label: Voraussetzungen für die Teilnahme am Modul
+        presence_required: true
+        explicit_none_allowed: true
+      - id: student_workload
+        label: Studentischer Arbeitsaufwand
+        presence_required: true
+        required_components:
+        - Kontaktstudium in Zeitstunden
+        - Selbststudium in Zeitstunden
+      - id: study_achievements
+        label: Studienleistungen
+        presence_required: true
+        explicit_none_allowed: true
+      - id: exam_admission_requirements
+        label: Voraussetzung für Zulassung zur Prüfungsleistung
+        presence_required: true
+        explicit_none_allowed: true
+      - id: assessment
+        label: Prüfungsleistung
+        presence_required: true
+        explicit_none_allowed_if:
+        - Modul wird nach § 6 Abs. 6 AB BAMA mit einer Studienleistung abgeschlossen.
+      - id: credits
+        label: Anzahl Credits für das Modul
+        presence_required: true
+      - id: teaching_unit
+        label: Lehreinheit
+        presence_required: true
+      - id: module_responsible
+        label: Modulverantwortliche/r
+        presence_required: true
+      - id: teachers
+        label: Lehrende des Moduls
+        presence_required: true
+      - id: media_forms
+        label: Medienformen
+        presence_required: true
+      - id: literature
+        label: Literatur
+        presence_required: true
+      extends_rule: he_module_description_minimum
+  study_achievement_rules:
+  - id: uk_study_achievement_definition
+    trigger: study_achievements
+    rule: 'Studienleistungen sind als eigenständige Leistungskategorie zu behandeln und können mündliche, praktische
+      oder schriftliche Leistungsnachweise sein.
+
+      '
+    source: ab_bama
+    citation: § 9 Abs. 1, S. 8
+    status: binding
+  - id: uk_study_achievement_grading
+    trigger: study_achievements
+    rule: 'Studienleistungen werden in der Regel mit bestanden oder nicht bestanden bewertet; eine Benotung ist
+      möglich.
+
+      '
+    source: ab_bama
+    citation: § 9 Abs. 2, S. 8
+    status: binding
+  - id: uk_study_achievement_repeatability
+    trigger: study_achievements
+    rule: 'Studienleistungen können unbegrenzt wiederholt werden.
+
+      '
+    source: ab_bama
+    citation: § 9 Abs. 4, S. 8
+    status: binding
+  - id: uk_study_achievement_as_exam_admission
+    trigger: study_achievements
+    rule: 'Studienleistungen können innerhalb eines Moduls als Zulassungsvoraussetzung zur Modulprüfungsleistung
+      gefordert werden und müssen in engem zeitlichen und sachlichen Zusammenhang mit den entsprechenden Studienphasen
+      stehen.
+
+      '
+    source: ab_bama
+    citation: § 6 Abs. 7, S. 5
+    status: binding
+  - id: uk_study_achievement_accumulation
+    trigger: study_achievements
+    rule: 'Auffällige Häufungen von Studienleistungen gesondert sichtbar machen.
+
+      '
+    normative: false
+    output_status: HINWEIS
+    note: 'Die bloße Häufung ist in den geprüften Quellen nicht als eigenständiger Rechtsverstoß definiert.
+
+      '
+  key_competence_rules:
+  - id: uk_key_competence_transparency
+    trigger: key_competences
+    enabled: true
+    programme_type:
+    - bachelor
+    - master
+    rule: 'In Studienverlaufsplänen sind additive und integrierte Schlüsselkompetenzen mit Credits auszuweisen.
+      In Modulhandbüchern sind sie den Kompetenzfeldern der jeweils geltenden Rahmenvorgaben für Schlüsselkompetenzen
+      zuzuordnen.
+
+      '
+    source: ab_bama
+    citation: § 6 Abs. 13, S. 6
+    status: binding
+  - id: uk_personal_development_objectives
+    trigger: competence_orientation
+    rule: 'Bei der Beschreibung der Qualifikationsziele sind gesellschaftliches Engagement und Persönlichkeitsentwicklung
+      besonders zu berücksichtigen.
+
+      '
+    source: ab_bama
+    citation: § 6 Abs. 13, S. 6
+    status: binding_framework
+  attendance_rules:
+  - id: uk_attendance_lists_exception_only
+    trigger: attendance_requirements
+    rule: 'Das Führen von Anwesenheitslisten muss in der Fachprüfungsordnung geregelt sein und ist nur in begründeten
+      Ausnahmefällen zulässig.
+
+      '
+    source: ab_bama
+    citation: § 6 Abs. 16, S. 7
+    status: binding
+    examples_of_possible_justification:
+    - kapazitäre Beschränkungen
+    - Kooperation mit externen Stellen
+    - besondere Bedeutung der Interaktion der Studierenden
+    - Modulteilleistung ohne weitere eigenständige Prüfungs- oder Studienleistung
+  practical_component_rules:
+  - id: uk_practical_module_scope
+    trigger: practical_components
+    rule: 'Die Allgemeinen Bestimmungen für Praxismodule gelten für Praktika in Bachelor- und Masterstudiengängen,
+      ausgenommen Schulpraktische Studien.
+
+      '
+    source: ab_practical_modules
+    citation: § 1 Abs. 1, S. 2
+    status: binding
+  - id: uk_practical_module_function_description
+    trigger: practical_components
+    rule: 'Praxismodule sind nach ihrem Typ und ihrer Funktion im Modulhandbuch differenziert zu beschreiben.
+
+      '
+    source: ab_practical_modules
+    citation: § 2, S. 2
+    status: binding
+  - id: uk_practical_module_duration
+    trigger: practical_components
+    rule: 'Fachpraktikum, Berufspraktikum, Praxisprojekt und BPS umfassen einen Praxisaufenthalt von mindestens
+      6 bis maximal 26 Wochen; Grundpraktika mindestens 6 bis maximal 12 Wochen.
+
+      '
+    source: ab_practical_modules
+    citation: § 3 Abs. 1, S. 2
+    status: binding
+  - id: uk_practical_module_fpo_parameters
+    trigger: practical_components
+    rule: 'Dauer, wöchentlicher zeitlicher Umfang und Zeitpunkt des Praxismoduls sind in der jeweiligen Fachprüfungsordnung
+      zu regeln.
+
+      '
+    source: ab_practical_modules
+    citation: § 3 Abs. 2, S. 2
+    status: binding
+  - id: uk_practical_module_responsibility
+    trigger: practical_components
+    rule: 'Der zuständige Fachbereich benennt eine Modulverantwortliche bzw. einen Modulverantwortlichen (Praktikumsbeauftragte/n)
+      oder richtet ein Praxis- bzw. BPS-Referat ein.
+
+      '
+    source: ab_practical_modules
+    citation: § 4 Abs. 1, S. 3
+    status: binding
+  - id: uk_practical_module_evidence
+    trigger: practical_components
+    rule: 'Der erfolgreiche Abschluss setzt die Bescheinigung der Praxisstelle und die vorgesehene Studienleistung
+      voraus.
+
+      '
+    source: ab_practical_modules
+    citation: § 5 Abs. 1–4, S. 3
+    status: binding
+  - id: uk_practical_module_workload
+    trigger: workload_credit_relation
+    rule: 'Credits für Praxismodule werden entsprechend der zeitlichen Arbeitsbelastung vergeben; eine Stunde Praktikumszeit
+      entspricht einer Zeitstunde Workload.
+
+      '
+    source: ab_practical_modules
+    citation: § 7, S. 4
+    status: binding
+  source_interpretation_rules:
+  - id: UK_RULE_001
+    rule: 'Die Kasseler Workload-Regel ist als 30-Stunden-Regelfall mit ausdrücklich zulässigem Abweichungskorridor
+      von 25 bis 30 Stunden je Credit zu modellieren.
+
+      '
+  - id: UK_RULE_002
+    rule: 'Anlage 2.1 der AB BAMA definiert das Kasseler Schema der Modulbeschreibung. Alle Felder der Anlage 2.1
+      sind zu berücksichtigen.
+
+      '
+  - id: UK_RULE_003
+    rule: 'Eine pauschale Obergrenze von zwei Prüfungsleistungen je Modul ist aus der geprüften AB-BAMA-Fassung
+      nicht ableitbar und bleibt ohne weitere Quelle deaktiviert.
+
+      '
+  - id: UK_RULE_004
+    rule: 'Die Häufung von Studienleistungen ist ohne zusätzliche normative Grundlage als Hinweis, nicht automatisch
+      als Mangel zu bewerten.
+
+      '
+  validation:
+  - id: UK_VAL_001
+    description: 'Keine institutionelle Regel ohne konkrete Fundstelle als verbindliche Normabweichung verwenden.
+
+      '
+    action_on_violation: disable_rule
+  - id: UK_VAL_002
+    description: 'Eine Abweichung vom 30-Stunden-Regelfall darf nicht beanstandet werden, wenn eine Fachprüfungsordnung
+      wirksam einen Wert innerhalb des zulässigen Korridors von 25 bis 30 Stunden je Credit festlegt.
+
+      '
+    action_on_violation: reassess_workload_rule
+  - id: UK_VAL_003
+    description: 'Die Zahl der Modulteilprüfungsleistungen nicht mit einer unbelegten pauschalen Zweiergrenze prüfen.
+
+      '
+    action_on_violation: remove_unsupported_cap
+  disabled_rules:
+  - id: uk_no_fixed_two_exam_cap_in_source
+    trigger: assessment_alignment
+    enabled: false
+    rule: 'Maximal zwei Prüfungsleistungen pro Modul.
+
+      '
+    source: ab_bama
+    citation: null
+    status: unsupported
+    note: 'In der geprüften AB-BAMA-Lesefassung Stand 17.11.2025 wurde keine Regelung gefunden, die die Zahl der
+      Prüfungsleistungen pauschal auf zwei begrenzt. Diese Regel darf erst nach Hinterlegung einer einschlägigen
+      Quelle aktiviert werden.
+
+      '
